@@ -128,21 +128,21 @@ Follow this link for installation: https://docs.anaconda.com/anaconda/install/li
 
 ### Step - 1: ###
 
-   => Create user defined XML file from input User Configuration flat file
+   1. Create user defined XML file from input User Configuration flat file
       and Base-XML file
-   => UserConfig.txt: 
+   2.  UserConfig.txt: 
    		(a) Add the absolute path prefix for the resources directory with tag: resourceDir. 
 		    An example can be seen in CONFIG/Example-UserConfig.txt file.
 		(b) Manually check if datasets corresponding to other field tags are correctly downloaded and 
 		    put in respective folders.
 
-### Command: ###
+##### Command: #####
 
  $ python createAnalysisXML.py -u \<user-config-flat-file\> 
 			    -b \<existing-base-xml-file\> 
 			    -o \<out-xml-file-name\>
 
-### Example: ###
+##### Example: #####
 
  $ python createAnalysisXML.py -u CONFIG/UserConfig.txt 
 			       -b CONFIG/Analysis_base_grch37.xml 
@@ -150,7 +150,7 @@ Follow this link for installation: https://docs.anaconda.com/anaconda/install/li
 
 Outputs: => CONFIG/Analysis_user_grch37.xml
 
-#Step-2:
+##### Step-2: #####
    => Put the respective vcf files in the directory: XTR/example/vcf/ 
    => Create manifest file from input directory or list of manifest file
    => Assign gender to each family members
