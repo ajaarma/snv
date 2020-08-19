@@ -207,7 +207,7 @@ Follow this link for installation: https://docs.anaconda.com/anaconda/install/li
 	Launch the scripts in these 3 stages sequentially after each of them gets finished.
 
 	   (1) mergeVCF.sh : For merging all normalized VCF files. 
-	   (2) splitAndAnnotate_chr*.sh where *=chr1..chr22,chrX and chrY
+	   (2) splitAndAnnotate_chr*.sh where *=chr1..chr22,chrX,chrY and chrMT
 		scatter the annotation and frequency filtering per chromosome for all families.
 	   (3) mergeAndFilter.sh:
 		Merge all the chromosome and apply inheritance filtering.
@@ -220,7 +220,7 @@ Follow this link for installation: https://docs.anaconda.com/anaconda/install/li
 
 
 #									  #
-# Replicating for full cohort of 514 families (n=1543) 			  #
+# Replicating for full cohort of 514 families (n=1542) 			  #
 #									  #
 
     (1) Replace the example 3 families file: <path-prefix>/XTR/example/sample_pedigree.txt 
