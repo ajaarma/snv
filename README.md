@@ -235,4 +235,7 @@ Follow this link for installation: https://docs.anaconda.com/anaconda/install/li
 	(3) mergeAndFilter step: approx 4 hours.
 
 
-************************* The End ***************************
+##### For any questions/issues/bugs please mail us at: #####
+	Ajay: aak64@cam.ac.uk
+	Courtney: cf458@cam.ac.uk
+	Alba: Alba.sanchis-juan@bioresource.nihr.ac.uk
