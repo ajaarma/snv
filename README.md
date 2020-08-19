@@ -111,11 +111,11 @@ Follow this link for installation: https://docs.anaconda.com/anaconda/install/li
 
 	Deafult present with this distribution. Can be found in XML file with these tags:
 		(1) GeneList: <genelist>
-    		(2) Somatic mosaicism genes: <haemGenesFile>
-    		(3) Imprinted genes: <imprintedGenesFile>
-    		(4) Polymorphic genes: <polymorphicGenesFile>
-    		(5) HPO terms: <hpo>
-    		(6) OMIM: <omim>
+		(2) Somatic mosaicism genes: <haemGenesFile>
+		(3) Imprinted genes: <imprintedGenesFile>
+		(4) Polymorphic genes: <polymorphicGenesFile>
+		(5) HPO terms: <hpo>
+		(6) OMIM: <omim>
  
 #									#
 # Example run for 3 families						#
