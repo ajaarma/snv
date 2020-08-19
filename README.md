@@ -201,7 +201,7 @@ Outputs: => CONFIG/Analysis_user_grch37.xml
 
 ##### Outputs: #####
 	Three scripts in the directory: <path-prefix>/XTR/example/20200726/tmp_binaries/
-	Launch the scripts in these 3 stages sequentially.
+	Launch the scripts in these 3 stages sequentially after each of them gets finished.
 
 	   (1) mergeVCF.sh : For merging all normalized VCF files. 
 	   (2) splitAndAnnotate_chr*.sh where *=chr1..chr22,chrX and chrY
@@ -213,7 +213,7 @@ Outputs: => CONFIG/Analysis_user_grch37.xml
 ### Step-4 ###
 
 	Final output of list of filtered variant is present in:
-	\<path-prefix\>/XTR/example/20200726/fam_filter/\<family-id\>/\<fam-id\>.filt_\<project-date\>.txt
+	<path-prefix>/XTR/example/20200726/fam_filter/<family-id>/<fam-id>.filt_<project-date>.txt
 
 
 #									  #
