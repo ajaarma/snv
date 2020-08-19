@@ -158,21 +158,21 @@ Outputs: => CONFIG/Analysis_user_grch37.xml
    5. List of all the family ids that needed to be analyzed. See example sample_pedigree.txt file.
 
 ##### Command: #####
- $ python processXTR.py -a <user-config-analysis-xml-file>
+	$ python processXTR.py -a <user-config-analysis-xml-file>
 		     	-i <input-family-trio-mapping> 
 		     	-d <path-to-trio-vcf-files>
 		     	-o <path-to-output-directory>
 		     	-e <analysis-type: norm>
 
 ##### Example: #####
- $ python processXTR.py -a CONFIG/Analysis_user_grch37.xml \ 
+	$ python processXTR.py -a CONFIG/Analysis_user_grch37.xml \ 
 			-i <path-prefix>/XTR/example/sample_pedigree.txt \
 			-d <path-prefix>/XTR/example/vcf \
 			-o <path-prefix>/XTR/example/out \
 			-e norm
 
  List of all the family ids that needed to be analyzed
- $ cut -f 1 <path-prefix>/XTR/example/out/manifest.txt | grep -v '^family' > <path-prefix>/XTR/example/out/extrFamAll.txt
+	$ cut -f 1 <path-prefix>/XTR/example/out/manifest.txt | grep -v '^family' > <path-prefix>/XTR/example/out/extrFamAll.txt
  
 
 ### Step -3: ###
@@ -180,7 +180,7 @@ Outputs: => CONFIG/Analysis_user_grch37.xml
    Generate all the shell scripts that can be incorporated into any HPC cluster network.
 
 ##### Command: #####
- $ python processSNV.py -a <USER-XML-FILE>
+	$ python processSNV.py -a <USER-XML-FILE>
 		    	-p <Project-date>
 		      	-m <manifest-file>
 		     	-e <analysis-type: exter_merge>
@@ -190,7 +190,7 @@ Outputs: => CONFIG/Analysis_user_grch37.xml
 		     	-f <List-of-family-ids>
 		     
 ##### Example: #####
- $ python processSNV.py -a CONFIG/Analysis_user_grch37.xml \ 
+	$ python processSNV.py -a CONFIG/Analysis_user_grch37.xml \ 
 			-p 20200726 \
 			-m <path-prefix>/XTR/example/out/manifest/manifest.txt \
 			-e exeter \
