@@ -138,13 +138,13 @@ Follow this link for installation: https://docs.anaconda.com/anaconda/install/li
 
 ##### Command: #####
 
- $ python createAnalysisXML.py -u \<user-config-flat-file\> 
+	$ python createAnalysisXML.py -u \<user-config-flat-file\> 
 			    -b \<existing-base-xml-file\> 
 			    -o \<out-xml-file-name\>
 
 ##### Example: #####
 
- $ python createAnalysisXML.py -u CONFIG/UserConfig.txt 
+	$ python createAnalysisXML.py -u CONFIG/UserConfig.txt 
 			       -b CONFIG/Analysis_base_grch37.xml 
 			       -o CONFIG/Analysis_user_grch37.xml
 
@@ -212,7 +212,7 @@ Outputs: => CONFIG/Analysis_user_grch37.xml
 
 ### Step-4 ###
 
-Final output of list of filtered variant is present in:
+	Final output of list of filtered variant is present in:
 	\<path-prefix\>/XTR/example/20200726/fam_filter/\<family-id\>/\<fam-id\>.filt_\<project-date\>.txt
 
 
@@ -227,9 +227,9 @@ Final output of list of filtered variant is present in:
     (2) Re-run the analysis Step3-4
 
     N.B: Average run time for full cohort of 514 families in our cluster: 5-6 hours. The split out is:
-    	   (1) MergeVCF step: approx 40 mins
-	   (2) splitAndAnnotate step: 7-8 hours in HPC cluster
-	   (3) mergeAndFilter step: approx 4 hours.
+	(1) MergeVCF step: approx 40 mins
+	(2) splitAndAnnotate step: 7-8 hours in HPC cluster
+	(3) mergeAndFilter step: approx 4 hours.
 
 
 ************************* The End ***************************
