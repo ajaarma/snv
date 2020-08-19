@@ -119,9 +119,9 @@ Follow this link for installation: https://docs.anaconda.com/anaconda/install/li
  
 #									#
 # Example run for 3 families						#
-#####	(1) TwEx_EX1910699-TwEx_EX1910700-TwEx_EX1910701 #####
-#####	(2) WE0282-WE0283-WE0323			 #####
-#####	(3) WE0361-WE0362-WE0363			 #####
+	(1) TwEx_EX1910699-TwEx_EX1910700-TwEx_EX1910701 
+	(2) WE0282-WE0283-WE0323			 
+	(3) WE0361-WE0362-WE0363			 
 
 ###Activate the conda environment###
  $ source activate snv
