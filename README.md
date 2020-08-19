@@ -150,21 +150,21 @@ Follow this link for installation: https://docs.anaconda.com/anaconda/install/li
 
 Outputs: => CONFIG/Analysis_user_grch37.xml
 
-##### Step-2: #####
-   => Put the respective vcf files in the directory: XTR/example/vcf/ 
-   => Create manifest file from input directory or list of manifest file
-   => Assign gender to each family members
-   => Normalize original vcf files
-   => List of all the family ids that needed to be analyzed. See example sample_pedigree.txt file.
+### Step-2: ###
+   1. Put the respective vcf files in the directory: XTR/example/vcf/ 
+   2. Create manifest file from input directory or list of manifest file
+   3. Assign gender to each family members
+   4. Normalize original vcf files
+   5. List of all the family ids that needed to be analyzed. See example sample_pedigree.txt file.
 
-Command:
+##### Command: #####
  $ python processXTR.py -a <user-config-analysis-xml-file>
 		     	-i <input-family-trio-mapping> 
 		     	-d <path-to-trio-vcf-files>
 		     	-o <path-to-output-directory>
 		     	-e <analysis-type: norm>
 
-Example: 
+##### Example: #####
  $ python processXTR.py -a CONFIG/Analysis_user_grch37.xml \ 
 			-i <path-prefix>/XTR/example/sample_pedigree.txt \
 			-d <path-prefix>/XTR/example/vcf \
@@ -175,11 +175,11 @@ Example:
  $ cut -f 1 <path-prefix>/XTR/example/out/manifest.txt | grep -v '^family' > <path-prefix>/XTR/example/out/extrFamAll.txt
  
 
-# Step -3: 
+### Step -3: ###
 
-   => Generate all the shell scripts that can be incorporated into any HPC cluster network.
+   Generate all the shell scripts that can be incorporated into any HPC cluster network.
 
-Command:
+##### Command: #####
  $ python processSNV.py -a <USER-XML-FILE>
 		    	-p <Project-date>
 		      	-m <manifest-file>
@@ -189,7 +189,7 @@ Command:
 		     	-d <samples-fof>
 		     	-f <List-of-family-ids>
 		     
-Example: 
+##### Example: #####
  $ python processSNV.py -a CONFIG/Analysis_user_grch37.xml \ 
 			-p 20200726 \
 			-m <path-prefix>/XTR/example/out/manifest/manifest.txt \
@@ -199,7 +199,7 @@ Example:
 			-d <path-prefix>/XTR/example/exeter_samples_norm.fof \
 			-f <path-prefix>/XTR/example/out/manifest/extrFamALL.txt 
 
-Outputs: 
+##### Outputs: #####
 	Three scripts in the directory: <path-prefix>/XTR/example/20200726/tmp_binaries/
 	Launch the scripts in these 3 stages sequentially.
 
@@ -210,7 +210,7 @@ Outputs:
 		Merge all the chromosome and apply inheritance filtering.
 
 
-# Step-4 #
+### Step-4 ###
 
 Final output of list of filtered variant is present in:
 	<path-prefix>/XTR/example/20200726/fam_filter/<family-id>/<fam-id>.filt_<project-date>.txt
