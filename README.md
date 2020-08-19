@@ -138,15 +138,15 @@ Follow this link for installation: https://docs.anaconda.com/anaconda/install/li
 
 ##### Command: #####
 
-	$ python createAnalysisXML.py -u \<user-config-flat-file\> 
-			    -b \<existing-base-xml-file\> 
-			    -o \<out-xml-file-name\>
+	$ python createAnalysisXML.py -u <user-config-flat-file> 
+			    	      -b <existing-base-xml-file> 
+			              -o <out-xml-file-name>
 
 ##### Example: #####
 
 	$ python createAnalysisXML.py -u CONFIG/UserConfig.txt 
-			       -b CONFIG/Analysis_base_grch37.xml 
-			       -o CONFIG/Analysis_user_grch37.xml
+			       	      -b CONFIG/Analysis_base_grch37.xml 
+			              -o CONFIG/Analysis_user_grch37.xml
 
 Outputs: => CONFIG/Analysis_user_grch37.xml
 
@@ -171,7 +171,7 @@ Outputs: => CONFIG/Analysis_user_grch37.xml
 			-o <path-prefix>/XTR/example/out \
 			-e norm
 
- List of all the family ids that needed to be analyzed
+#### List of all the family ids that needed to be analyzed #####
 	$ cut -f 1 <path-prefix>/XTR/example/out/manifest.txt | grep -v '^family' > <path-prefix>/XTR/example/out/extrFamAll.txt
  
 
