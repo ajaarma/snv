@@ -60,28 +60,28 @@ Follow this link for installation: https://docs.anaconda.com/anaconda/install/li
 
 # Download link for following dataset and place them in corresponding directories as shown
    
-   -- HPO: Extract HPO phenotypes mapping:
+   1. HPO: Extract HPO phenotypes mapping:
    	$ cd path-prefix/XTR/resources/hpo/
    	$ tar -zxvf phenotypes_to_genes.tar.gz 
 
-   -- REFERENCE SEQUENCE GENOME (FASTA file alongwith Index)
+   2. REFERENCE SEQUENCE GENOME (FASTA file alongwith Index)
    	Download link: https://hgdownload.soe.ucsc.edu/goldenPath/hg19/bigZips/
 	Put this in folder: XTR/resources/genomes/grch37/Homo_sapiens.GRCh37.74.dna.fasta
 		Also get the corresponding index file for the above '.fasta' file
 
-   -- GNOMAD
+   3. GNOMAD
    	Download link: https://gnomad.broadinstitute.org/downloads
 	Put it in this folder: XTR/resources/gnomad/grch37/gnomad.genomes.r2.1.1.sites.vcf.bgz
 	Edit User config flat file CONFIG/UserConfig.txt : gnomad_g=gnomad/grch37/gnomad.genomes.r2.1.1.sites.vcf.bgz
   
-  -- ExAC:
+   4. ExAC:
   	Download Link: https://gnomad.broadinstitute.org/downloads (ExAC tab)
 	Put it in this folder: XTR/resources/exac/grch37/ExAC.r0.3.1.sites.vep.decompose.norm.prefixed_PASS-only.vcf.gz
 	Edit User config flat file CONFIG/UserConfig.txt : 
 		exac=exac/grch37/ExAC.r0.3.1.sites.vep.decompose.norm.prefixed_PASS-only.vcf.gz
 		exac_t=exac/grch37/ExAC.r0.3.1.sites.vep.decompose.norm.prefixed_PASS-only.vcf.gz
   
-  -- CADD:
+   5. CADD:
   	Download link: https://cadd.gs.washington.edu/download
 	Put it in this directory: XTR/resources/cadd/grch37/whole_genome_SNVs.tsv.gz
 				  XTR/resource/cadd/grch37/InDels.tsv.gz
@@ -89,19 +89,19 @@ Follow this link for installation: https://docs.anaconda.com/anaconda/install/li
 				cadd_snv=cadd/grch37/whole_genome_SNVs.tsv.gz
 				cadd_indel=cadd/grch37/InDels.tsv.gz
 
-  -- REVEL:
+   6. REVEL:
   	Download link: https://sites.google.com/site/revelgenomics/downloads
 	Put it in this directory: XTR/resources/revel/grch37/new_tabbed_revel.tsv.gz
 	Edit the user config flat file CONFIG/UserConfig.txt : 
 				revel=revel/grch37/new_tabbed_revel.tsv.gz
 
-  -- HGMD:
+   7. HGMD:
   	Download link: http://www.hgmd.cf.ac.uk/ac/index.php (Require personal access login)
 	Put it in this directory: XTR/resources/hgmd/grch37/hgmd_pro_2019.4_hg19_wID.vcf.gz
 	Edit the user config flat file CONFIG/UserConfig.txt :
 				hgmd=hgmd/grch37/hgmd_pro_2019.4_hg19_wID.vcf.gz
 
-  -- CLINVAR:
+   8. CLINVAR:
   	Download link: https://www.ncbi.nlm.nih.gov/variation/docs/ClinVar_vcf_files/
 	Put it in this directory: XTR/resources/clinvar/grch37/clinvar_20200506.vcf.gz
 	Edit the user config flat file CONFIG/UserConfig.txt :
