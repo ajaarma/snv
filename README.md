@@ -1,6 +1,6 @@
 SNV Pipeline
 
-# Installating 
+# Installation 
 
 git clone https://github.com/ajaarma/snv.git
 
@@ -123,7 +123,7 @@ Follow this link for installation: https://docs.anaconda.com/anaconda/install/li
 #####	(2) WE0282-WE0283-WE0323			 #####
 #####	(3) WE0361-WE0362-WE0363			 #####
 
-#Activate the conda environment
+###Activate the conda environment###
  $ source activate snv
 
 #Step - 1:
@@ -210,17 +210,15 @@ Outputs:
 		Merge all the chromosome and apply inheritance filtering.
 
 
-# Step-4
+# Step-4 #
 
 Final output of list of filtered variant is present in:
 	<path-prefix>/XTR/example/20200726/fam_filter/<family-id>/<fam-id>.filt_<project-date>.txt
 
 
-###########################################################################
 #									  #
 # Replicating for full cohort of 514 families (n=1543) 			  #
 #									  #
-###########################################################################
 
     (1) Replace the example 3 families file: <path-prefix>/XTR/example/sample_pedigree.txt 
 	with 514 families file : <path-prefix>/XTR/example/exeter_pedigree.txt  
