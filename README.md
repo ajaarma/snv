@@ -5,15 +5,15 @@ The pipeline requires user defined datasets & annotation sources, available tool
 
 # Installation 
 
-git clone https://github.com/ajaarma/snv.git
+	git clone https://github.com/ajaarma/snv.git
 
 
 #							#
 # Required Installation packages			#
 #							#
 
-#Install anaconda v2.0
-Follow this link for installation: https://docs.anaconda.com/anaconda/install/linux/
+##### Install anaconda v2.0 #####
+	Follow this link for installation: https://docs.anaconda.com/anaconda/install/linux/
 
 
 ##### Conda environment commands ##########
