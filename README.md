@@ -124,13 +124,13 @@ Follow this link for installation: https://docs.anaconda.com/anaconda/install/li
 	(3) WE0361-WE0362-WE0363			 
 
 ### Activate the conda environment ###
- $ source activate snv
+	$ source activate snv
 
 ### Step - 1: ###
 
-   1. Create user defined XML file from input User Configuration flat file
+	1. Create user defined XML file from input User Configuration flat file
       and Base-XML file
-   2.  UserConfig.txt: 
+	2.  UserConfig.txt: 
    		(a) Add the absolute path prefix for the resources directory with tag: resourceDir. 
 		    An example can be seen in CONFIG/Example-UserConfig.txt file.
 		(b) Manually check if datasets corresponding to other field tags are correctly downloaded and 
