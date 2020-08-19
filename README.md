@@ -1,5 +1,8 @@
 # SNV Pipeline
 
+SNV calling pipeline developed explicitly to process Exeter dataset comprising of 514 famlies/trios (n=1743 samples).
+The pipeline requires user defined datasets & annotation sources, available tools and input set of vcf files. It generates analysis scripts that can be incorporated into high performance cluster (HPC) computing to process the samples. This results in list of filtered variants per family that can be used for interpreation, reporting and further downstream analysis.
+
 # Installation 
 
 git clone https://github.com/ajaarma/snv.git
