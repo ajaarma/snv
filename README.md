@@ -1,4 +1,4 @@
-#SNV Pipeline
+# SNV Pipeline
 
 # Installation 
 
