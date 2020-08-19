@@ -61,7 +61,7 @@ Follow this link for installation: https://docs.anaconda.com/anaconda/install/li
 # Download link for following dataset and place them in corresponding directories as shown
    
 	1. HPO: Extract HPO phenotypes mapping:
-   		$ cd path-prefix/XTR/resources/hpo/
+   		$ cd <path-prefix>/XTR/resources/hpo/
    		$ tar -zxvf phenotypes_to_genes.tar.gz 
 
 	2. REFERENCE SEQUENCE GENOME (FASTA file alongwith Index)
@@ -109,7 +109,7 @@ Follow this link for installation: https://docs.anaconda.com/anaconda/install/li
 
 ##### Customized Curated Annotation sets	  #####
 
-	Deafult present with this distribution. Can be found in XML file with these tags:
+	Default present with this distribution. Can be found in XML file with these tags:
 		(1) GeneList: <genelist>
 		(2) Somatic mosaicism genes: <haemGenesFile>
 		(3) Imprinted genes: <imprintedGenesFile>
@@ -147,28 +147,29 @@ Follow this link for installation: https://docs.anaconda.com/anaconda/install/li
 			       	      -b CONFIG/Analysis_base_grch37.xml 
 			              -o CONFIG/Analysis_user_grch37.xml
 
-Outputs: => CONFIG/Analysis_user_grch37.xml
+##### Outputs: ##### 
+	CONFIG/Analysis_user_grch37.xml
 
 ### Step-2: ###
-   1. Put the respective vcf files in the directory: XTR/example/vcf/ 
-   2. Create manifest file from input directory or list of manifest file
-   3. Assign gender to each family members
-   4. Normalize original vcf files
-   5. List of all the family ids that needed to be analyzed. See example sample_pedigree.txt file.
+	1. Put the respective vcf files in the directory: XTR/example/vcf/ 
+	2. Create manifest file from input directory or list of manifest file
+	3. Assign gender to each family members
+	4. Normalize original vcf files
+	5. List of all the family ids that needed to be analyzed. See example sample_pedigree.txt file.
 
 ##### Command: #####
-	$ python processXTR.py -a <user-config-analysis-xml-file>
-		     	-i <input-family-trio-mapping> 
-		     	-d <path-to-trio-vcf-files>
-		     	-o <path-to-output-directory>
-		     	-e <analysis-type: norm>
+	$ python processXTR.py  -a <user-config-analysis-xml-file>
+		     	       	-i <input-family-trio-mapping> 
+		     		-d <path-to-trio-vcf-files>
+		     		-o <path-to-output-directory>
+		     		-e <analysis-type: norm>
 
 ##### Example: #####
-	$ python processXTR.py -a CONFIG/Analysis_user_grch37.xml \ 
-			-i <path-prefix>/XTR/example/sample_pedigree.txt \
-			-d <path-prefix>/XTR/example/vcf \
-			-o <path-prefix>/XTR/example/out \
-			-e norm
+	$ python processXTR.py 	-a CONFIG/Analysis_user_grch37.xml \ 
+				-i <path-prefix>/XTR/example/sample_pedigree.txt \
+				-d <path-prefix>/XTR/example/vcf \
+				-o <path-prefix>/XTR/example/out \
+				-e norm
 
 #### List of all the family ids that needed to be analyzed #####
 	$ cut -f 1 <path-prefix>/XTR/example/out/manifest.txt | grep -v '^family' > <path-prefix>/XTR/example/out/extrFamAll.txt
@@ -179,24 +180,24 @@ Outputs: => CONFIG/Analysis_user_grch37.xml
    Generate all the shell scripts that can be incorporated into any HPC cluster network.
 
 ##### Command: #####
-	$ python processSNV.py -a <USER-XML-FILE>
-		    	-p <Project-date>
-		      	-m <manifest-file>
-		     	-e <analysis-type: exter_merge>
-			-w <work-dir>
-		     	-g <gender-file>
-		     	-d <samples-fof>
-		     	-f <List-of-family-ids>
+	$ python processSNV.py 	-a <USER-XML-FILE>
+		    		-p <Project-date>
+		      		-m <manifest-file>
+		     		-e <analysis-type: exter_merge>
+				-w <work-dir>
+		     		-g <gender-file>
+		     		-d <samples-fof>
+		     		-f <List-of-family-ids>
 		     
 ##### Example: #####
-	$ python processSNV.py -a CONFIG/Analysis_user_grch37.xml \ 
-			-p 20200726 \
-			-m <path-prefix>/XTR/example/out/manifest/manifest.txt \
-			-e exeter \
-			-w <path-prefix>/XTR/example/ \
-			-g <path-prefix>/XTR/example/out/manifest/gender_genomic.txt \
-			-d <path-prefix>/XTR/example/exeter_samples_norm.fof \
-			-f <path-prefix>/XTR/example/out/manifest/extrFamALL.txt 
+	$ python processSNV.py 	-a CONFIG/Analysis_user_grch37.xml \ 
+				-p 20200726 \
+				-m <path-prefix>/XTR/example/out/manifest/manifest.txt \
+				-e exeter \
+				-w <path-prefix>/XTR/example/ \
+				-g <path-prefix>/XTR/example/out/manifest/gender_genomic.txt \
+				-d <path-prefix>/XTR/example/exeter_samples_norm.fof \
+				-f <path-prefix>/XTR/example/out/manifest/extrFamALL.txt 
 
 ##### Outputs: #####
 	Three scripts in the directory: <path-prefix>/XTR/example/20200726/tmp_binaries/
