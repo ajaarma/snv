@@ -1,4 +1,4 @@
-SNV Pipeline
+#SNV Pipeline
 
 # Installation 
 
@@ -213,7 +213,7 @@ Outputs: => CONFIG/Analysis_user_grch37.xml
 ### Step-4 ###
 
 Final output of list of filtered variant is present in:
-	<path-prefix>/XTR/example/20200726/fam_filter/<family-id>/<fam-id>.filt_<project-date>.txt
+	\<path-prefix\>/XTR/example/20200726/fam_filter/\<family-id\>/\<fam-id\>.filt_\<project-date\>.txt
 
 
 #									  #
