@@ -123,10 +123,10 @@ Follow this link for installation: https://docs.anaconda.com/anaconda/install/li
 	(2) WE0282-WE0283-WE0323			 
 	(3) WE0361-WE0362-WE0363			 
 
-# Activate the conda environment #
+### Activate the conda environment ###
  $ source activate snv
 
-#Step - 1:
+### Step - 1: ###
 
    => Create user defined XML file from input User Configuration flat file
       and Base-XML file
@@ -136,13 +136,13 @@ Follow this link for installation: https://docs.anaconda.com/anaconda/install/li
 		(b) Manually check if datasets corresponding to other field tags are correctly downloaded and 
 		    put in respective folders.
 
-Command:
+### Command: ###
 
  $ python createAnalysisXML.py -u \<user-config-flat-file\> 
 			    -b \<existing-base-xml-file\> 
 			    -o \<out-xml-file-name\>
 
-Example: 
+### Example: ###
 
  $ python createAnalysisXML.py -u CONFIG/UserConfig.txt 
 			       -b CONFIG/Analysis_base_grch37.xml 
