@@ -52,7 +52,7 @@ git clone https://github.com/ajaarma/snv.git
 	2. ensembl: XTR/resources/ensembl/grch37/ensBioMart_grch37_v98_ENST_lengths_191208.txt
 	3. region-exons: XTR/resources/regions/grch37/hg19_refseq_ensembl_exons_50bp_allMT_hgmd_clinvar_20200519.bed
 	4. regio-pseudo-autosomal-region: XTR/resources/regions/grch37/hg19_non_pseudoautosomal_regions_X.txt
-	5. HPO: XTR/resources/hpo/phenotype_to_genes.txt
+	5. HPO: XTR/resources/hpo/phenotype_to_genes.tar.gz
 	
 #	Other datasets that require no entry to user-configuration file.
 	6. Curated: 
@@ -64,6 +64,10 @@ git clone https://github.com/ajaarma/snv.git
 
 #
 # Download link for following dataset and place them in corresponding directories as shown
+   
+   -- HPO: Extract HPO phenotypes mapping
+   	$ cd <path-prefix>/XTR/resources/hpo/
+   	$ tar -zxvf phenotypes_to_genes.tar.gz 
 
    -- REFERENCE SEQUENCE GENOME (FASTA file alongwith Index)
    	Download link: https://hgdownload.soe.ucsc.edu/goldenPath/hg19/bigZips/
@@ -113,12 +117,12 @@ git clone https://github.com/ajaarma/snv.git
  ##########################################
 
  Deafult present with this distribution. Can be found in XML file with these tags
- -- GeneList: <genelist>
- -- Somatic mosaicism genes: <haemGenesFile>
- -- Imprinted genes: <imprintedGenesFile>
- -- Polymorphic genes: <polymorphicGenesFile>
- -- HPO terms: <hpo>
- -- OMIM: <omim>
+    -- GeneList: <genelist>
+    -- Somatic mosaicism genes: <haemGenesFile>
+    -- Imprinted genes: <imprintedGenesFile>
+    -- Polymorphic genes: <polymorphicGenesFile>
+    -- HPO terms: <hpo>
+    -- OMIM: <omim>
  
 #########################################################################
 #									#
@@ -157,11 +161,11 @@ Example:
 Outputs: => CONFIG/Analysis_user_grch37.xml
 
 #Step-2:
+   => Put the respective vcf files in the directory: XTR/example/vcf/ 
    => Create manifest file from input directory or list of manifest file
    => Assign gender to each family members
    => Normalize original vcf files
    => List of all the family ids that needed to be analyzed. See example sample_pedigree.txt file.
-   => Put the respective vcf files in the directory: XTR/example/vcf/ 
 
 Command:
  $ python processXTR.py -a <user-config-analysis-xml-file>
