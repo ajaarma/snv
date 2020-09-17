@@ -247,4 +247,4 @@ The pipeline requires user defined datasets & annotation sources, available tool
 ##### For any questions/issues/bugs please mail us at: #####
 	Ajay: aak64@cam.ac.uk
 	Courtney: cf458@cam.ac.uk
-	Alba: Alba.sanchis-juan@bioresource.nihr.ac.uk
+	Alba: as2635@cam.ac.uk
