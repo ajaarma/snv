@@ -50,7 +50,7 @@ The pipeline requires user defined datasets & annotation sources, available tool
 	1. exac_pli: XTR/resources/gnomad/grch37/gnomad.v2.1.1.lof_metrics.by_transcript_forVEP.txt
 	2. ensembl: XTR/resources/ensembl/grch37/ensBioMart_grch37_v98_ENST_lengths_191208.txt
 	3. region-exons: XTR/resources/regions/grch37/hg19_refseq_ensembl_exons_50bp_allMT_hgmd_clinvar_20200519.bed
-	4. regio-pseudo-autosomal-region: XTR/resources/regions/grch37/hg19_non_pseudoautosomal_regions_X.txt
+	4. region-pseudo-autosomal: XTR/resources/regions/grch37/hg19_non_pseudoautosomal_regions_X.txt
 	5. HPO: XTR/resources/hpo/phenotype_to_genes.tar.gz
 	
 ##### Other datasets that require no entry to user-configuration file #####
@@ -68,24 +68,31 @@ The pipeline requires user defined datasets & annotation sources, available tool
    		$ tar -zxvf phenotypes_to_genes.tar.gz 
 
 	2. REFERENCE SEQUENCE GENOME (FASTA file alongwith Index)
-   		Download link: https://hgdownload.soe.ucsc.edu/goldenPath/hg19/bigZips/
+   		Download link: <s> https://hgdownload.soe.ucsc.edu/goldenPath/hg19/bigZips/ </s>. The download link will be provided separately.
 		Put this in folder: XTR/resources/genomes/grch37/Homo_sapiens.GRCh37.74.dna.fasta
 			Also get the corresponding index file for the above '.fasta' file
 
 	3. GNOMAD
-   		Download link: https://gnomad.broadinstitute.org/downloads
+   		Download link: 
+		Genomes: https://storage.googleapis.com/gnomad-public/release/2.1.1/vcf/genomes/gnomad.genomes.r2.1.1.sites.vcf.bgz
+		Exomes: https://storage.googleapis.com/gnomad-public/release/2.1.1/vcf/exomes/gnomad.exomes.r2.1.1.sites.vcf.bgz
 		Put it in this folder: XTR/resources/gnomad/grch37/gnomad.genomes.r2.1.1.sites.vcf.bgz
-		Edit User config flat file CONFIG/UserConfig.txt : gnomad_g=gnomad/grch37/gnomad.genomes.r2.1.1.sites.vcf.bgz
+				       XTR/resources/gnomad/grch37/gnomad.exomes.r2.1.1.sites.vcf.bgz
+		Edit User config flat file CONFIG/UserConfig.txt : 
+				      gnomad_g=gnomad/grch37/gnomad.genomes.r2.1.1.sites.vcf.bgz
+				      gnomad_e=gnomad/grch37/gnomad.exomes.r2.1.1.sites.vcf.bgz
   
 	4. ExAC:
-  		Download Link: https://gnomad.broadinstitute.org/downloads (ExAC tab)
+  		Download Link: <s> https://gnomad.broadinstitute.org/downloads (ExAC tab) </s>. The download link will be provided separately.
 		Put it in this folder: XTR/resources/exac/grch37/ExAC.r0.3.1.sites.vep.decompose.norm.prefixed_PASS-only.vcf.gz
 		Edit User config flat file CONFIG/UserConfig.txt : 
 			exac=exac/grch37/ExAC.r0.3.1.sites.vep.decompose.norm.prefixed_PASS-only.vcf.gz
 			exac_t=exac/grch37/ExAC.r0.3.1.sites.vep.decompose.norm.prefixed_PASS-only.vcf.gz
   
 	5. CADD:
-  		Download link: https://cadd.gs.washington.edu/download
+  		Download link: https://krishna.gs.washington.edu/download/CADD/v1.6/GRCh37/whole_genome_SNVs.tsv.gz
+			       https://krishna.gs.washington.edu/download/CADD/v1.6/GRCh37/InDels.tsv.gz
+			       (Also download the corresponding tabix index files as well)
 		Put it in this directory: XTR/resources/cadd/grch37/whole_genome_SNVs.tsv.gz
 				  XTR/resource/cadd/grch37/InDels.tsv.gz
 		Edit the user config flat file CONFIG/UserConfig.txt :
@@ -93,7 +100,7 @@ The pipeline requires user defined datasets & annotation sources, available tool
 				cadd_indel=cadd/grch37/InDels.tsv.gz
 
 	6. REVEL:
-  		Download link: https://sites.google.com/site/revelgenomics/downloads
+  		Download link: <s> https://sites.google.com/site/revelgenomics/downloads </s>. The download link will be provided separately.
 		Put it in this directory: XTR/resources/revel/grch37/new_tabbed_revel.tsv.gz
 		Edit the user config flat file CONFIG/UserConfig.txt : 
 				revel=revel/grch37/new_tabbed_revel.tsv.gz
@@ -105,7 +112,9 @@ The pipeline requires user defined datasets & annotation sources, available tool
 				hgmd=hgmd/grch37/hgmd_pro_2019.4_hg19_wID.vcf.gz
 
 	8. CLINVAR:
-  		Download link: https://www.ncbi.nlm.nih.gov/variation/docs/ClinVar_vcf_files/
+  		Download link: 
+			https://ftp.ncbi.nlm.nih.gov/pub/clinvar/vcf_GRCh37/weekly/clinvar_20200506.vcf.gz
+			https://ftp.ncbi.nlm.nih.gov/pub/clinvar/vcf_GRCh37/weekly/clinvar_20200506.vcf.gz.tbi
 		Put it in this directory: XTR/resources/clinvar/grch37/clinvar_20200506.vcf.gz
 		Edit the user config flat file CONFIG/UserConfig.txt :
 				clinvar=clinvar/grch37/clinvar_20200506.vcf.gz
