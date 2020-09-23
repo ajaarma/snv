@@ -68,9 +68,9 @@ The pipeline requires user defined datasets & annotation sources, available tool
    		$ tar -zxvf phenotypes_to_genes.tar.gz 
 
 	2. REFERENCE SEQUENCE GENOME (FASTA file alongwith Index)
-   		Download link: <s> https://hgdownload.soe.ucsc.edu/goldenPath/hg19/bigZips/ </s>. The download link will be provided separately.
+   		Download link: https://drive.google.com/drive/folders/1Ro3pEYhVdYkMmteSr8YRPFeTvb_K0lVf?usp=sharing
 		Put this in folder: XTR/resources/genomes/grch37/Homo_sapiens.GRCh37.74.dna.fasta
-			Also get the corresponding index file for the above '.fasta' file
+			Also get the corresponding index and dict file for the above '.fai' and '.dict' file
 
 	3. GNOMAD
    		Download link: 
@@ -83,8 +83,10 @@ The pipeline requires user defined datasets & annotation sources, available tool
 				      gnomad_e=gnomad/grch37/gnomad.exomes.r2.1.1.sites.vcf.bgz
   
 	4. ExAC:
-  		Download Link: <s> https://gnomad.broadinstitute.org/downloads (ExAC tab) </s>. The download link will be provided separately.
-		Put it in this folder: XTR/resources/exac/grch37/ExAC.r0.3.1.sites.vep.decompose.norm.prefixed_PASS-only.vcf.gz
+  		Download Link: https://drive.google.com/drive/folders/11Ya8XfAxOYmlKZ9mN8A16IDTLHdHba_0?usp=sharing
+		Download file: ExAC.r0.3.1.sites.vep.decompose.norm.prefixed_PASS-only.vcf.gz
+			also the index files (*.csi and *.tbi)
+		Put it in this folder as: XTR/resources/exac/grch37/ExAC.r0.3.1.sites.vep.decompose.norm.prefixed_PASS-only.vcf.gz
 		Edit User config flat file CONFIG/UserConfig.txt : 
 			exac=exac/grch37/ExAC.r0.3.1.sites.vep.decompose.norm.prefixed_PASS-only.vcf.gz
 			exac_t=exac/grch37/ExAC.r0.3.1.sites.vep.decompose.norm.prefixed_PASS-only.vcf.gz
@@ -100,7 +102,9 @@ The pipeline requires user defined datasets & annotation sources, available tool
 				cadd_indel=cadd/grch37/InDels.tsv.gz
 
 	6. REVEL:
-  		Download link: <s> https://sites.google.com/site/revelgenomics/downloads </s>. The download link will be provided separately.
+  		Download link: https://drive.google.com/drive/folders/12Tl1YU5bI-By_VawTPVWHef7AXzn4LuP?usp=sharing
+		Download file: new_tabbed_revel.tsv.gz
+		         Also the index file: *.tbi
 		Put it in this directory: XTR/resources/revel/grch37/new_tabbed_revel.tsv.gz
 		Edit the user config flat file CONFIG/UserConfig.txt : 
 				revel=revel/grch37/new_tabbed_revel.tsv.gz
