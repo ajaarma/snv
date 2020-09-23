@@ -144,12 +144,12 @@ The pipeline requires user defined datasets & annotation sources, available tool
 
 ### Step - 1: ###
 
-	1. Create user defined XML file from input User Configuration flat file and Base-XML file
-	2. UserConfig.txt: 
+	1. Edit CONFIG/UserConfig.txt: 
    		(a) Add the absolute path prefix for the resources directory with tag: resourceDir. 
 		    An example can be seen in CONFIG/Example-UserConfig.txt file.
 		(b) Manually check if datasets corresponding to other field tags are correctly downloaded and 
 		    put in respective folders.
+	2. Create user defined XML file from input User Configuration flat file and Base-XML file
 
 ##### Command: #####
 
@@ -193,7 +193,7 @@ The pipeline requires user defined datasets & annotation sources, available tool
 
 ### Step -3: ###
 
-   Generate all the shell scripts that can be incorporated into any HPC cluster network.
+   Generate all the shell scripts that can be incorporated into user specific HPC cluster network.
 
 ##### Command: #####
 	$ python processSNV.py 	-a <USER-XML-FILE>
