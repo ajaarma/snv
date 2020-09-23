@@ -50,7 +50,7 @@
 		</params>
 	</gvcfGenotyper>
 	<regions>
-		<exons>regions/grch37/hg19_refseq_ensembl_exons_50bp_allMT_hgmd_clinvar_20200519.bed</exons>
+		<exons>regions/grch37/hg19_refseq_ensembl_exons_50bp_allMT_hgmd_clinvar_20200519.txt</exons>
 		<PAR>regions/grch37/hg19_non_pseudoautosomal_regions_X.txt</PAR>
 	</regions>
 	<annotation>

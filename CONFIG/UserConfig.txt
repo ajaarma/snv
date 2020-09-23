@@ -13,6 +13,6 @@ revel=revel/grch37/new_tabbed_revel.tsv.gz
 hgmd=hgmd/grch37/hgmd_pro_2019.4_hg19_wID.vcf.gz
 clinvar=clinvar/grch37/clinvar_20200506.vcf.gz
 ensembl=ensembl/grch37/ensBioMart_grch37_v98_ENST_lengths_191208.txt
-region_exons=regions/grch37/hg19_refseq_ensembl_exons_50bp_allMT_hgmd_clinvar_20200519.bed
+region_exons=regions/grch37/hg19_refseq_ensembl_exons_50bp_allMT_hgmd_clinvar_20200519.txt
 region_par=regions/grch37/hg19_non_pseudoautosomal_regions_X.txt
 hpo=hpo/phenotype_to_genes.txt
