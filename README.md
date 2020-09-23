@@ -225,7 +225,7 @@ The pipeline requires user defined datasets & annotation sources, available tool
 	Launch the scripts in these 3 stages sequentially after each of them gets finished.
 
 	   (1) mergeVCF.sh : For merging all normalized VCF files. 
-	   (2) splitAndAnnotate_chr*.sh where *=chr1..chr22,chrX,chrY and chrMT
+	   (2) splitAndAnnotate_chr*.sh where *=1..22,X,Y and MT
 		scatter the annotation and frequency filtering per chromosome for all families.
 	   (3) mergeAndFilter.sh:
 		Merge all the chromosome and apply inheritance filtering.
