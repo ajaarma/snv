@@ -49,7 +49,7 @@ The pipeline requires user defined datasets & annotation sources, available tool
 ##### Default datasets provided #####
 	1. exac_pli: XTR/resources/gnomad/grch37/gnomad.v2.1.1.lof_metrics.by_transcript_forVEP.txt
 	2. ensembl: XTR/resources/ensembl/grch37/ensBioMart_grch37_v98_ENST_lengths_191208.txt
-	3. region-exons: XTR/resources/regions/grch37/hg19_refseq_ensembl_exons_50bp_allMT_hgmd_clinvar_20200519.bed
+	3. region-exons: XTR/resources/regions/grch37/hg19_refseq_ensembl_exons_50bp_allMT_hgmd_clinvar_20200519.txt
 	4. region-pseudo-autosomal: XTR/resources/regions/grch37/hg19_non_pseudoautosomal_regions_X.txt
 	5. HPO: XTR/resources/hpo/phenotype_to_genes.tar.gz
 	
@@ -69,37 +69,42 @@ The pipeline requires user defined datasets & annotation sources, available tool
 
 	2. REFERENCE SEQUENCE GENOME (FASTA file alongwith Index)
    		Download link: https://drive.google.com/drive/folders/1Ro3pEYhVdYkMmteSr8YRPFeTvb_K0lVf?usp=sharing
+		Download file: Homo_sapiens.GRCh37.74.dna.fasta
+			Get the corresponding index and dict files: *.fai and *.dict
 		Put this in folder: XTR/resources/genomes/grch37/Homo_sapiens.GRCh37.74.dna.fasta
-			Also get the corresponding index and dict file for the above '.fai' and '.dict' file
 
 	3. GNOMAD
-   		Download link: 
+   		Download link (use wget): 
 		Genomes: https://storage.googleapis.com/gnomad-public/release/2.1.1/vcf/genomes/gnomad.genomes.r2.1.1.sites.vcf.bgz
 		Exomes: https://storage.googleapis.com/gnomad-public/release/2.1.1/vcf/exomes/gnomad.exomes.r2.1.1.sites.vcf.bgz
-		Put it in this folder: XTR/resources/gnomad/grch37/gnomad.genomes.r2.1.1.sites.vcf.bgz
-				       XTR/resources/gnomad/grch37/gnomad.exomes.r2.1.1.sites.vcf.bgz
+		Put it in this folder: 
+			XTR/resources/gnomad/grch37/gnomad.genomes.r2.1.1.sites.vcf.bgz
+			XTR/resources/gnomad/grch37/gnomad.exomes.r2.1.1.sites.vcf.bgz
 		Edit User config flat file CONFIG/UserConfig.txt : 
-				      gnomad_g=gnomad/grch37/gnomad.genomes.r2.1.1.sites.vcf.bgz
-				      gnomad_e=gnomad/grch37/gnomad.exomes.r2.1.1.sites.vcf.bgz
+			gnomad_g=gnomad/grch37/gnomad.genomes.r2.1.1.sites.vcf.bgz
+			gnomad_e=gnomad/grch37/gnomad.exomes.r2.1.1.sites.vcf.bgz
   
 	4. ExAC:
   		Download Link: https://drive.google.com/drive/folders/11Ya8XfAxOYmlKZ9mN8A16IDTLHdHba_0?usp=sharing
 		Download file: ExAC.r0.3.1.sites.vep.decompose.norm.prefixed_PASS-only.vcf.gz
 			also the index files (*.csi and *.tbi)
-		Put it in this folder as: XTR/resources/exac/grch37/ExAC.r0.3.1.sites.vep.decompose.norm.prefixed_PASS-only.vcf.gz
+		Put it in this folder as: 
+			XTR/resources/exac/grch37/ExAC.r0.3.1.sites.vep.decompose.norm.prefixed_PASS-only.vcf.gz
 		Edit User config flat file CONFIG/UserConfig.txt : 
 			exac=exac/grch37/ExAC.r0.3.1.sites.vep.decompose.norm.prefixed_PASS-only.vcf.gz
 			exac_t=exac/grch37/ExAC.r0.3.1.sites.vep.decompose.norm.prefixed_PASS-only.vcf.gz
   
 	5. CADD:
-  		Download link: https://krishna.gs.washington.edu/download/CADD/v1.6/GRCh37/whole_genome_SNVs.tsv.gz
-			       https://krishna.gs.washington.edu/download/CADD/v1.6/GRCh37/InDels.tsv.gz
-			       (Also download the corresponding tabix index files as well)
-		Put it in this directory: XTR/resources/cadd/grch37/whole_genome_SNVs.tsv.gz
-				  XTR/resource/cadd/grch37/InDels.tsv.gz
+  		Download link (use wget):
+			https://krishna.gs.washington.edu/download/CADD/v1.6/GRCh37/whole_genome_SNVs.tsv.gz
+			https://krishna.gs.washington.edu/download/CADD/v1.6/GRCh37/InDels.tsv.gz
+			(Also download the corresponding tabix index files as well)
+		Put it in this directory: 
+			XTR/resources/cadd/grch37/whole_genome_SNVs.tsv.gz
+			XTR/resource/cadd/grch37/InDels.tsv.gz
 		Edit the user config flat file CONFIG/UserConfig.txt :
-				cadd_snv=cadd/grch37/whole_genome_SNVs.tsv.gz
-				cadd_indel=cadd/grch37/InDels.tsv.gz
+			cadd_snv=cadd/grch37/whole_genome_SNVs.tsv.gz
+			cadd_indel=cadd/grch37/InDels.tsv.gz
 
 	6. REVEL:
   		Download link: https://drive.google.com/drive/folders/12Tl1YU5bI-By_VawTPVWHef7AXzn4LuP?usp=sharing
@@ -107,13 +112,13 @@ The pipeline requires user defined datasets & annotation sources, available tool
 		         Also the index file: *.tbi
 		Put it in this directory: XTR/resources/revel/grch37/new_tabbed_revel.tsv.gz
 		Edit the user config flat file CONFIG/UserConfig.txt : 
-				revel=revel/grch37/new_tabbed_revel.tsv.gz
+			revel=revel/grch37/new_tabbed_revel.tsv.gz
 
 	7. HGMD:
   		Download link: http://www.hgmd.cf.ac.uk/ac/index.php (Require personal access login)
 		Put it in this directory: XTR/resources/hgmd/grch37/hgmd_pro_2019.4_hg19_wID.vcf.gz
 		Edit the user config flat file CONFIG/UserConfig.txt :
-				hgmd=hgmd/grch37/hgmd_pro_2019.4_hg19_wID.vcf.gz
+			hgmd=hgmd/grch37/hgmd_pro_2019.4_hg19_wID.vcf.gz
 
 	8. CLINVAR:
   		Download link: 
@@ -121,7 +126,7 @@ The pipeline requires user defined datasets & annotation sources, available tool
 			https://ftp.ncbi.nlm.nih.gov/pub/clinvar/vcf_GRCh37/weekly/clinvar_20200506.vcf.gz.tbi
 		Put it in this directory: XTR/resources/clinvar/grch37/clinvar_20200506.vcf.gz
 		Edit the user config flat file CONFIG/UserConfig.txt :
-				clinvar=clinvar/grch37/clinvar_20200506.vcf.gz
+			clinvar=clinvar/grch37/clinvar_20200506.vcf.gz
 
 ##### Customized Curated Annotation sets	  #####
 
