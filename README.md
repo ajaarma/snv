@@ -23,7 +23,8 @@ The pipeline requires user defined datasets & annotation sources, available tool
 	$ conda install python=2.7.16
 		$ pip install xmltodict
 		$ pip install dicttoxml
-	
+
+	$ conda install -c anaconda gawk	
 	$ conda install samtools=1.3
 	$ conda install vcftools=0.1.14
 	$ conda install bcftools=1.9
@@ -116,6 +117,13 @@ The pipeline requires user defined datasets & annotation sources, available tool
 
 	7. HGMD:
   		Download link: http://www.hgmd.cf.ac.uk/ac/index.php (Require personal access login)
+		Put it in this directory: XTR/resources/hgmd/grch37/hgmd_pro_2019.4_hg19.vcf
+
+		Use this command to process HGMD file inside this directory:
+			$ cat hgmd_pro_2019.4_hg19.vcf | sed '/##comment=.*\"/a  ##INFO=<ID=ID,Number=1,Type=String,Description=\"HGMD ID\">' | awk -v OFS="\t" '{ if(/^#/){ print }else{ print $1,$2,$3,$4,$5,$6,$7,"ID="$3";"$8 } }' | bgzip -c  > hgmd_pro_2019.4_hg19_wID.vcf.gz
+			$ bcftools index -t hgmd_pro_2019.4_hg19_wID.vcf.gz
+			$ bcftools index hgmd_pro_2019.4_hg19_wID.vcf.gz	
+
 		Put it in this directory: XTR/resources/hgmd/grch37/hgmd_pro_2019.4_hg19_wID.vcf.gz
 		Edit the user config flat file CONFIG/UserConfig.txt :
 			hgmd=hgmd/grch37/hgmd_pro_2019.4_hg19_wID.vcf.gz
