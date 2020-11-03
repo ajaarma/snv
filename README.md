@@ -262,6 +262,6 @@ The pipeline requires user defined datasets & annotation sources, available tool
 
 
 ##### For any questions/issues/bugs please mail us at: #####
-	Ajay: aak64@cam.ac.uk
+	Ajay: aak@ebi.ac.uk
 	Courtney: cf458@cam.ac.uk
 	Alba: as2635@cam.ac.uk
