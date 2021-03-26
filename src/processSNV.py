@@ -62,9 +62,11 @@ if __name__=="__main__":
     config_dict = objC.getConfigDict(xml_file)
     objS = CLUSTER()
 
+    '''
     ################################################################
     # STEP-1: Merge VCF samples                                    #
     ################################################################
+     
     cluster_file, swh = objS.getClusterWriteHandle(tmp_bin,'mergeVCF')
 
     # Remove the quotes/comments for adding SLURM-Cluster specific details
@@ -89,8 +91,10 @@ if __name__=="__main__":
 
     swh.close()
 
+    '''
+
     ################################################################################
-    # STEP-2: Steps and functions for launching SLURM/SHELL scripts per chromosome #
+    # STEP-1: Steps and functions for launching SLURM/SHELL scripts per chromosome #
     ################################################################################
     
     for chr_num in chr_list:
@@ -113,11 +117,13 @@ if __name__=="__main__":
                                                       )
         
         # Remove the quotes/comments for adding SLURM-Cluster specific details
+        ''' 
         swh = objS.writeClusterTop(config_dict,proj_date,vers,swh)
         script_out, script_err, swh = objS.writeClusterInit(config_dict,
                                                           sb_log,chr_num,
                                                           email_id,exp_type,swh
                                                          )
+        '''
         if email_id and launch_flag: 
             swh = objS.writeClusterSpecific(swh)
             swh = objS.writeClusterModule(config_dict,swh)
@@ -200,7 +206,7 @@ if __name__=="__main__":
         #sys.exit()
 
     ########################################################################
-    # STEP-3: Combining all chromosome output and family filtering         # 
+    # STEP-2: Combining all chromosome output and family filtering         # 
     ########################################################################
     
     # combining all the chromosome output
@@ -215,4 +221,7 @@ if __name__=="__main__":
                                           family_list,proj_date,script_path,
                                                         out_merge_file,swh)
     swh.close()
+
+
+
 

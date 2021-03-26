@@ -1,0 +1,235 @@
+<?xml version="6.0" ?>
+<config>
+  <!--Configuration file for the SNV pipeline-->
+  <general>
+	  <genomeBuild>.</genomeBuild>
+	  <resourceDir>.</resourceDir>	
+	  <refFasta>.</refFasta>
+  </general>
+
+  <slurm>
+	  <dash>-</dash>
+	  <params1>
+	  	<J>GT_ANNOT_FILT_BY_CHR</J>
+		<A>WGS10K-SL2-CPU</A>
+		<p>skylake-himem</p>
+	  </params1>
+
+	  <doubDash>--</doubDash>
+	  <params2>	
+	  	<nodes>=1</nodes>
+		<ntasks>=1</ntasks>
+	  	<time>=36:00:00</time>
+		<mail-type>=FAIL,END</mail-type>
+		<mail-user>%email%</mail-user>
+		<output>%outFile%</output>
+		<error>%errorFile%</error>
+		<exclusive></exclusive>
+	  </params2>
+  </slurm>
+
+  <module> 
+	  <value>purge</value>
+	  <value>load samtools/1.3</value>
+	  <value>load vcftools/0.1.14</value>
+	  <value>load UCSCtools/20140819</value>
+	  <value>load R/3.3.2</value>
+	  <value>load gcc/5</value>
+	  <value>load parallel</value>
+  </module>
+
+
+  <gvcfGenotyper> 
+	  <binary>gvcfgenotyper </binary>
+	  <dash>-</dash>
+	  <params> 
+		  <C></C> <!-- chr prefix (eg chr, blank if none) -->
+		  <M></M> <!--mitochondrial genome name (eg chrM, blank if not necesarry) -->
+		  <l>%infile%</l> <!-- Input file -->
+		  <O>b</O> <!-- Output file style: compressed -->
+		  <o>%outFile%</o> <!-- Dynamic naming of the output file. Used typically for processing all chromosomes in parallel -->
+		  <f>%ref_seq%</f> <!-- reference genome file -->
+		  <r>%chr_num%</r> <!-- region or chromosome -->
+		  <L>%logFile%</L>
+	  </params>
+  </gvcfGenotyper>
+
+  <regions>
+	  <exons>regions/grch38/hg38_refseq_ensembl_exons_50bp_allMT_hgmd_clinvar_20200908.txt</exons>
+	  <PAR>regions/grch38/hg38_non_pseudoautosomal_regions_X.txt</PAR>
+  </regions>
+
+  <annotation> 
+	  <vep-bin>vep</vep-bin>
+	  <outFormat>vcf</outFormat>
+	  <doubDash>--</doubDash>
+	  <defPar> 
+		  <format>vcf</format>
+	  	  <offline></offline>
+		  <cache></cache>
+		  <dir_cache>softwares/vep/</dir_cache>
+		  <force_overwrite></force_overwrite>
+		  <species>homo_sapiens</species>
+		  <assembly>GRCh38</assembly>
+		  <port>3337</port>
+		  <!-- <fasta>%ref_seq%</fasta> -->
+		  <vcf_info_field>ANN</vcf_info_field>
+	  </defPar>
+	  <all>
+		  <sift>b</sift>
+		  <polyphen>b</polyphen>
+		  <humdiv></humdiv>
+		  <regulatory></regulatory>
+		  <allele_number></allele_number>
+		  <total_length></total_length>
+		  <numbers></numbers>
+		  <domains></domains>
+		  <hgvs></hgvs>
+		  <protein></protein>
+		  <symbol></symbol>
+		  <ccds></ccds>
+		  <uniprot></uniprot>
+		  <canonical></canonical>
+		  <biotype></biotype>
+		  <check_existing></check_existing>
+		  <af></af>
+		  <af_1kg></af_1kg>
+		  <pubmed></pubmed>
+		  <gene_phenotype></gene_phenotype>
+	  	  <variant_class></variant_class>
+	  </all>
+	  <plugIn>
+	          <CADD>
+		        <cadd_snv>.</cadd_snv>
+			<cadd_indel>.</cadd_indel>
+		  </CADD>
+		  <ExACpLI>.</ExACpLI>
+		  <REVEL>.</REVEL>
+	  	  <SpliceRegion>.</SpliceRegion>
+	  </plugIn>
+	  <cust-annot> 
+		  <!-- 
+	          <WGS10K>
+		        <chr></chr>
+		        <vcfDir>/rds/project/who1000/rds-who1000-wgs10k/WGS10K/</vcfDir>
+		        <vcf>data/release/20170614-A/merged-vcf/no_hgmd/chr%s_agg3_dedup_vep.vcf.gz</vcf>
+			<fields>WGS10K_AC,WGS10K_AN,WGS10K_AF</fields>
+			  </WGS10K>
+		  -->
+		  <GNOMADV3>
+			<chr></chr>
+			<excl_chr>MT</excl_chr>
+			<repl_chr>21</repl_chr>
+			<vcf>gnomad/GRCh38/r3.0/byChr/gnomad.genomes.r3.0.sites.chr%s.vcf.bgz</vcf>
+			<fields>AC,AF,nhomalt,AC_male,AC_female,AF_male,AF_female,AF_afr,AF_amr,AF_asj,AF_eas,AF_fin,AF_nfe,AF_oth,AF_sas,AF_ami,AC_afr,AC_amr,AC_asj,AC_eas,AC_fin,AC_nfe,AC_oth,AC_sas,AC_ami,nhomalt_afr,nhomalt_amr,nhomalt_asj,nhomalt_eas,nhomalt_fin,nhomalt_nfe,nhomalt_oth,nhomalt_sas,nhomalt_ami</fields>			    <tag>GNOMADgV3</tag>
+		  </GNOMADV3>
+	          <GNOMADg>
+		        <vcf>.</vcf>
+			<fields>AC,AF,nhomalt,AC_male,AC_female,AF_male,AF_female,AF_afr,AF_amr,AF_asj,AF_eas,AF_fin,AF_nfe,AF_oth,AC_afr,AC_amr,AC_asj,AC_eas,AC_fin,AC_nfe,AC_oth,nhomalt_afr,nhomalt_amr,nhomalt_asj,nhomalt_eas,nhomalt_fin,nhomalt_nfe,nhomalt_oth,popmax,AC_popmax,AN_popmax,AF_popmax</fields>
+		        <tag>GNOMADg</tag>
+		  </GNOMADg>
+	          <GNOMADe>
+		        <vcf>.</vcf>
+			<fields>AC,AF,nhomalt,AC_male,AC_female,AF_male,AF_female,AF_afr,AF_amr,AF_asj,AF_eas,AF_fin,AF_nfe,AF_oth,AF_sas,AC_afr,AC_amr,AC_asj,AC_eas,AC_fin,AC_nfe,AC_oth,AC_sas,nhomalt_afr,nhomalt_amr,nhomalt_asj,nhomalt_eas,nhomalt_fin,nhomalt_nfe,nhomalt_oth,nhomalt_sas,popmax,AC_popmax,AN_popmax,AF_popmax</fields>
+		        <tag>GNOMADe</tag>
+		  </GNOMADe>
+	          <EXAC>
+		        <vcf>.</vcf>
+			<fields>AC,AF,AN,AC_Hemi,AC_Hom,AC_AFR,AC_AMR,AC_Adj,AC_EAS,AC_FIN,AC_NFE,AC_OTH,AC_SAS,AN_AFR,AN_AMR,AN_Adj,AN_EAS,AN_FIN,AN_NFE,AN_OTH,AN_SAS</fields>
+			<tag>EXAC</tag>
+		  </EXAC> 
+		  <!--
+		  <EXACt>
+		        <vcf>.</vcf>
+			<fields>Hom_AMR,Hom_EAS,Hom_FIN,Hom_NFE,Hom_OTH,Hom_SAS,POPMAX</fields>
+		        <tag>EXAC</tag>
+		  </EXACt> 
+		  -->
+
+		  <TOPMED>
+			  <vcf>.</vcf>
+			  <fields>AC,AF,AN,Het,Hom</fields>
+			  <tag>TOPMED</tag>
+		  </TOPMED>
+	          <HGMD>
+		        <vcf>.</vcf>
+			<fields>ID,CLASS,MUT,DB,DNA,GENE,PROT,PHEN</fields>
+		        <tag>HGMD</tag>
+		  </HGMD>
+	          <CLINVAR>
+		        <vcf>.</vcf>
+			<fields>INFO</fields>
+		  </CLINVAR>
+	  </cust-annot>
+  </annotation>
+  
+  <freqImpact>
+	  <vcf2tab>vcf2tab.v2.py</vcf2tab> 
+	  <bcfBinary>bcftools</bcfBinary>
+	  <dash>-</dash>
+	  <keep>regions/grch38/no_freq_filters_grch38.v2.txt</keep>
+	  <exclude>
+			  <!-- <NGC_AF>&gt;0.10</NGC_AF> -->
+		  <GNOMADgV3_AF>&gt;0.01</GNOMADgV3_AF>
+		  <GNOMADg_AF>&gt;0.01</GNOMADg_AF>
+		  <GNOMADe_AF>&gt;0.01</GNOMADe_AF>
+		  <EXAC_AF>&gt;0.01</EXAC_AF>
+		  <TOPMED_AF>&gt;0.01</TOPMED_AF>
+	  </exclude>
+	  <extReg>
+		  <value>^#</value> 
+		  <value>^MT</value> 
+		  <value>MODERATE</value> 
+		  <value>HIGH</value>
+		  <value>splice_donor_5th_base_variant</value>
+		  <value>splice_donor_0th_base_variant</value>
+		  <value>splice_donor_region_variant</value>
+		  <value>splice_polypyrimidine_tract_variant</value> 
+		  <value>HGMD</value>
+		  <value>CLNSIG</value>
+	  </extReg>
+	  <outFile>%outFile%</outFile>
+
+  </freqImpact>
+
+  <varPrior>
+	  <vpBin>variantPrioritization.v3.R</vpBin>
+	  <dash>-</dash>
+	  <params>
+		  <v>%inFile%</v>
+		  <o>%outFile%</o>
+		  <c>15</c>
+		  <l>ensembl/grch38/ensBioMart_grch38_v100_ENST_lengths_200510.txt</l>
+	  </params>
+  </varPrior>
+
+  <combChromTab> 
+	  <combBin>combinePriorTab.R </combBin>
+	  <bcfSuffix>AC0.exon.vep.anno.sites.ploidy.ngcfreq</bcfSuffix>
+	  <tabSuffix>AC0.exon.vep.anno.sites.ploidy.ngcfreq.0_01.imp.prior</tabSuffix>
+  </combChromTab>
+
+  <famFilter>
+	  <famBin>familyFiltering.v7.R</famBin>
+	  <freqScript>_grch38</freqScript>
+	  <liftoverBin>addLiftoverCoords.sh</liftoverBin>
+	  <ped>%manifest%</ped>
+	  <columns>columns.v3_grch38.txt</columns>
+		  <!-- <columns>columns.extr_grch37.txt</columns> -->
+	  <family>%family_list%</family>
+	  <genelist>curated/NGC_genelist_allNamesOnly-20200519.txt</genelist>
+          <!-- Comment out inheritedGenelist to only use HPO term related genes -->
+	  <haemGenesFile>curated/haem_somatic_mosaicism_genes_20191015.txt</haemGenesFile>
+	  <imprintedGenesFile>curated/imprinted_genes_20200424.txt</imprintedGenesFile>
+	  <polymorphicGenesFile>curated/polymorphic_genes_20200509.txt</polymorphicGenesFile>
+	  <phenotypes>.</phenotypes>
+	  <hpo>.</hpo>
+	  <omim>omim/omim_20200421_geneInfoBase.txt</omim>
+		  <!-- <crossmap>softwares/CrossMap-0.2.9/usr/local/Cluster-Apps/python/2.7.10/bin/CrossMap.py</crossmap> -->
+	  <crossmap>CrossMap.py</crossmap>
+	  <chain>genomes/GRCh38_to_GRCh37.chain.gz</chain>
+	  <newCol>grch37_coords</newCol>
+  </famFilter>
+
+</config>
+
