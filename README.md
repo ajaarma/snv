@@ -214,9 +214,9 @@ The pipeline requires user defined datasets & annotation sources, available tool
 	Two scripts in the directory: <path-prefix>/demo/example/20210326/tmp_binaries/
 	Launch the scripts in these 2 stages sequentially after each of them gets finished.
 
-	   (1) **genotypeAndAnnotate_chr*.sh** where *=1..22,X,Y and MT
+	   (1) __genotypeAndAnnotate_chr*.sh__ where *=1..22,X,Y and MT
 		scatter the annotation and frequency filtering per chromosome for all families.
-	   (2) **mergeAndFilter.sh**:
+	   (2) __mergeAndFilter.sh__:
 		Merge all the chromosome and apply inheritance filtering.
 
 
