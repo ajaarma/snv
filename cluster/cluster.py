@@ -8,7 +8,7 @@
 
 import re,sys,os,subprocess,datetime,time
 
-class SLURM:
+class CLUSTER:
 
     def __init__(self, elements=[]):
         self.__elements={}
@@ -16,22 +16,22 @@ class SLURM:
             self.__elements[e]=1
 
     def display(self):
-        print 'Inside SLURM class. Creating SLURM/SHELL script for launching jobs'+\
+        print 'Inside CLUSTER class. Creating SLURM/SHELL script for launching jobs'+\
                'in the cluster'
 
-    def getSlurmWriteHandle(self,bin_dir,slurm_name,chr_num=[]):
+    def getClusterWriteHandle(self,bin_dir,cluster_name,chr_num=[]):
         ''' Subroutine to generate SLURM/SHELL script file name '''
 
         if len(chr_num)!=0:
-            slurm_file = os.path.abspath(bin_dir+"/"+slurm_name+"_chr"+chr_num+".sh")
-            wh = open(slurm_file,"w")
+            cluster_file = os.path.abspath(bin_dir+"/"+cluster_name+"_chr"+chr_num+".sh")
+            wh = open(cluster_file,"w")
         else:
-            slurm_file = os.path.abspath(bin_dir+"/"+slurm_name+".sh")
-            wh = open(slurm_file,"w")
+            cluster_file = os.path.abspath(bin_dir+"/"+cluster_name+".sh")
+            wh = open(cluster_file,"w")
 
-        return slurm_file, wh
+        return cluster_file, wh
 
-    def writeSlurmTop(self,config_dict,proj_name,vers,wh):
+    def writeClusterTop(self,config_dict,proj_name,vers,wh):
         ''' Subroutine to write the top header part of the SLURM/SHELL batch 
             script'''
 
@@ -46,8 +46,8 @@ class SLURM:
 
         return wh
 
-    def writeSlurmInit(self,config_dict,sb_log,chr_num,email_id,gt_type,wh):
-        ''' Subroutine to provide initial details for SLURM batch script. 
+    def writeClusterInit(self,config_dict,sb_log,chr_num,email_id,gt_type,wh):
+        ''' Subroutine to provide initial details for CLUSTER batch script. 
             Automatically extracted from user provided XML file '''
         
         slurm_dict = config_dict["slurm"]
@@ -84,9 +84,9 @@ class SLURM:
                 print >>wh,"\n"
         return script_out, script_err, wh
 
-    def writeSlurmSpecific(self,wh):
+    def writeClusterSpecific(self,wh):
         
-        ''' Subroutine for writing SLURM specific details in the batch script '''
+        ''' Subroutine for writing CLUSTER: SLURM specific details in the batch script '''
 
         print >>wh,"#! Number of nodes and tasks per node allocated by SLURM (do not change):"
         print >>wh,"numnodes=$SLURM_JOB_NUM_NODES"
@@ -96,7 +96,7 @@ class SLURM:
         
         return wh
 
-    def writeSlurmModule(self,config_dict,wh):
+    def writeClusterModule(self,config_dict,wh):
         
         ''' Subroutine for writing SLURM specific module details. Automatically 
             extracted from user provided XML file. '''
@@ -131,7 +131,7 @@ class SLURM:
 
         return wh
 
-    def writeSlurmNGCvsXTRCompare(self,config_dict,inp_data,tmp_data,tmp_log,
+    def writeClusterNGCvsXTRCompare(self,config_dict,inp_data,tmp_data,tmp_log,
                                         tmp_stat_file,exp_type,swh,chr_num):
 
         ''' Subroutine to count variants at each stage of the snv step '''
@@ -163,7 +163,7 @@ class SLURM:
         return swh
 
 
-    def writeSlurmMergeVCF(self,config_dict,data_file,tmp_dir,tmp_log,
+    def writeClusterMergeVCF(self,config_dict,data_file,tmp_dir,tmp_log,
                                                     tmp_stat_file,wh):
 
         ''' Subroutine to merge the bgzip compressed VCF files '''
@@ -193,7 +193,7 @@ class SLURM:
 
         return merge_out_file,wh
 
-    def writeSlurmSplitByChrom(self,tmp_merge_file,tmp_data,tmp_log,
+    def writeClusterSplitByChrom(self,tmp_merge_file,tmp_data,tmp_log,
                                                     tmp_stat_file,wh,chr_num):
         
         ''' Subroutine to split the Merged bcf file into individual 
@@ -220,7 +220,7 @@ class SLURM:
         return tmp_out_file,wh
 
 
-    def writeSlurmGvcfGT(self,config_dict,data_file,tmp_data,tmp_log,tmp_stat_file,
+    def writeClusterGvcfGT(self,config_dict,data_file,tmp_data,tmp_log,tmp_stat_file,
                                                      exp_type,wh,chr_num,reheader):
 
         ''' Subroutine to implement running up of joint genotyping using gvcfGenotyper.
@@ -306,7 +306,7 @@ class SLURM:
         return tmp_out_file, wh
 
     
-    def writeSlurmRegion(self,config_dict,tmp_data,tmp_out_file,tmp_stat_file,
+    def writeClusterRegion(self,config_dict,tmp_data,tmp_out_file,tmp_stat_file,
                                                           chr_num,exp_type,wh):
 
         ''' Subroutine to extract the exonic regions '''
@@ -347,7 +347,7 @@ class SLURM:
         return exon_file, wh
 
     
-    def writeSlurmPloidy(self,config_dict,tmp_out_file,chr_num,gender_file,
+    def writeClusterPloidy(self,config_dict,tmp_out_file,chr_num,gender_file,
                                 tmp_stat_file,gt_type,script_path,wh,flag_samples):
 
         ''' Subroutine for implementing fix ploidy steps '''
@@ -449,7 +449,7 @@ class SLURM:
         return fr_out, wh        
         
 
-    def writeSlurmCustomAnnot(self,config_dict,tmp_data,tmp_out_file,chr_num,wh):
+    def writeClusterCustomAnnot(self,config_dict,tmp_data,tmp_out_file,chr_num,wh):
         
         ''' Subroutine to add custom annotations : gnomAD,ExAC,HGMD, Clinvar '''
 
@@ -506,7 +506,7 @@ class SLURM:
         return exon_tmp_anno_file, wh
  
 
-    def writeSlurmFreqFilter(self,config_dict,tmp_out_file,chr_num,tmp_stat_file,
+    def writeClusterFreqFilter(self,config_dict,tmp_out_file,chr_num,tmp_stat_file,
                                                                   script_path,wh):
         
         ''' Subroutine for implementing frequency filtering steps '''
@@ -563,7 +563,7 @@ class SLURM:
         return exon_tmp_anno_file_001, wh
 
                 
-    def writeSlurmVEP(self,config_dict,tmp_data,tmp_out_file,tmp_stat_file,
+    def writeClusterVEP(self,config_dict,tmp_data,tmp_out_file,tmp_stat_file,
                                                         chr_num,script_path,wh):
 
         ''' Subroutine to implementing VEP annotation '''
@@ -695,7 +695,7 @@ class SLURM:
         return exon_anno_file_001, wh
     
 
-    def writeSlurmImpactFilter(self,config_dict,tmp_out_file,chr_num,tmp_stat_file,
+    def writeClusterImpactFilter(self,config_dict,tmp_out_file,chr_num,tmp_stat_file,
                                                                     script_path,wh):
 
         ''' Subroutine for implementing impact filtering steps '''
@@ -733,7 +733,7 @@ class SLURM:
         return out1, out2, wh
 
     
-    def writeSlurmVariantPrioritization(self,config_dict,tmp_out_file_tab,
+    def writeClusterVariantPrioritization(self,config_dict,tmp_out_file_tab,
                                                  tmp_stat_file,script_path,wh):
 
         ''' Subroutine for implementing variant prioritization '''
@@ -780,23 +780,23 @@ class SLURM:
 
         return out_file, wh
 
-    def writeSlurmCombineFiles(self,config_dict,proj_name,vers,tmp_dir,
-                               tmp_status,slurm_name,gt_type,email_id,script_path):
+    def writeClusterCombineFiles(self,config_dict,proj_name,vers,tmp_dir,
+                               tmp_status,cluster_name,gt_type,email_id,script_path):
 
         ''' Subroutine to combine all the output files split across chromosomes'''
 
-        objS = SLURM()
+        objS = CLUSTER()
         tmp_bin = tmp_dir+"/tmp_binaries"
         tmp_data = tmp_dir+"/tmp_data"
         sb_log =  tmp_dir+"/sb_log"
-        tmp_stat_file = tmp_status+"/Job_status_"+slurm_name+".txt"
+        tmp_stat_file = tmp_status+"/Job_status_"+cluster_name+".txt"
 
-        slurm_file, wh = objS.getSlurmWriteHandle(tmp_bin,slurm_name)
-        wh = objS.writeSlurmTop(config_dict,proj_name,vers,wh)
-        script_out, script_err, wh = objS.writeSlurmInit(config_dict,sb_log,
+        cluster_file, wh = objS.getClusterWriteHandle(tmp_bin,cluster_name)
+        wh = objS.writeClusterTop(config_dict,proj_name,vers,wh)
+        script_out, script_err, wh = objS.writeClusterInit(config_dict,sb_log,
                                                     "CombChr",email_id,gt_type,wh)
-        wh = objS.writeSlurmSpecific(wh)
-        wh = objS.writeSlurmModule(config_dict,wh)
+        wh = objS.writeClusterSpecific(wh)
+        wh = objS.writeClusterModule(config_dict,wh)
         
         print >>wh,"\n\n######## START: Combining Variants for All Chromsomes ###########"
         
@@ -816,7 +816,7 @@ class SLURM:
         return out_file_path,wh
 
 
-    def writeSlurmFamilyFilter(self,config_dict,work_dir,tmp_dir,manifest,
+    def writeClusterFamilyFilter(self,config_dict,work_dir,tmp_dir,manifest,
                                         family_list,proj_name,script_path,
                                                         out_merge_file,wh):
 
@@ -890,7 +890,7 @@ class SLURM:
 
         return wh
 
-    def writeSlurmEndStatus(self,tmp_stat_file,wh):
+    def writeClusterEndStatus(self,tmp_stat_file,wh):
 
         ''' Subroutine to implement End status of the script'''
 

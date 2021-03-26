@@ -16,12 +16,12 @@ vers="1.0"
 import re,sys,getopt,os,datetime,subprocess
 from collections import OrderedDict
 
-script_path = os.path.dirname(os.path.abspath( __file__ ))
+script_path = os.path.dirname(os.path.dirname(os.path.abspath( __file__ )))
 
-sys.path.append(script_path+"/CONFIG/")
-sys.path.append(script_path+"/SLURM/")
+sys.path.append(script_path+"/config/")
+sys.path.append(script_path+"/cluster/")
 from CONFIG import *
-from SLURM import *
+from CLUSTER import *
 
 ##################
 ####   MAIN   ####
@@ -60,30 +60,30 @@ if __name__=="__main__":
     
     objC = CONFIG()
     config_dict = objC.getConfigDict(xml_file)
-    objS = SLURM()
+    objS = CLUSTER()
 
     ################################################################
     # STEP-1: Merge VCF samples                                    #
     ################################################################
-    slurm_file, swh = objS.getSlurmWriteHandle(tmp_bin,'mergeVCF')
+    cluster_file, swh = objS.getClusterWriteHandle(tmp_bin,'mergeVCF')
 
     # Remove the quotes/comments for adding SLURM-Cluster specific details
       
-    swh = objS.writeSlurmTop(config_dict,proj_date,vers,swh)
-    script_out, script_err, swh = objS.writeSlurmInit(config_dict,sb_log,
+    swh = objS.writeClusterTop(config_dict,proj_date,vers,swh)
+    script_out, script_err, swh = objS.writeClusterInit(config_dict,sb_log,
                                                     'mergeVCF',email_id,
                                                             exp_type,swh)
 
     if email_id and launch_flag:
-        swh = objS.writeSlurmSpecific(swh)
-        swh = objS.writeSlurmModule(config_dict,swh)
+        swh = objS.writeClusterSpecific(swh)
+        swh = objS.writeClusterModule(config_dict,swh)
 
     
 
     tmp_stat_file = tmp_status+"/Job_status_merge.txt"
 
     # Function for merging VCF files. 
-    tmp_merge_file, swh = objS.writeSlurmMergeVCF(config_dict,data_file,
+    tmp_merge_file, swh = objS.writeClusterMergeVCF(config_dict,data_file,
                                                         tmp_dir,tmp_log,
                                                       tmp_stat_file,swh)
 
@@ -101,30 +101,30 @@ if __name__=="__main__":
 
         # Write the header and job specific name
         if exp_type == 'gvcfGT':
-            slurm_file, swh = objS.getSlurmWriteHandle(tmp_bin,
+            cluster_file, swh = objS.getClusterWriteHandle(tmp_bin,
                                                        "genotypeAndAnnotate",
                                                        chr_num
                                                       )
 
         elif re.search('exeter',exp_type,re.IGNORECASE):
-            slurm_file, swh = objS.getSlurmWriteHandle(tmp_bin,
+            cluster_file, swh = objS.getClusterWriteHandle(tmp_bin,
                                                        'splitAndAnnotate',
                                                        chr_num
                                                       )
         
         # Remove the quotes/comments for adding SLURM-Cluster specific details
-        swh = objS.writeSlurmTop(config_dict,proj_date,vers,swh)
-        script_out, script_err, swh = objS.writeSlurmInit(config_dict,
+        swh = objS.writeClusterTop(config_dict,proj_date,vers,swh)
+        script_out, script_err, swh = objS.writeClusterInit(config_dict,
                                                           sb_log,chr_num,
                                                           email_id,exp_type,swh
                                                          )
         if email_id and launch_flag: 
-            swh = objS.writeSlurmSpecific(swh)
-            swh = objS.writeSlurmModule(config_dict,swh)
+            swh = objS.writeClusterSpecific(swh)
+            swh = objS.writeClusterModule(config_dict,swh)
         
         # If the analysis task is joint genotyping using gvcfgenotyper (Illumina) 
         if exp_type =="gvcfGT":
-            tmp_out_file, swh = objS.writeSlurmGvcfGT(config_dict,data_file,
+            tmp_out_file, swh = objS.writeClusterGvcfGT(config_dict,data_file,
                                                       tmp_data,tmp_log,
                                                       tmp_stat_file,exp_type,
                                                       swh,chr_num,reheader)
@@ -133,65 +133,65 @@ if __name__=="__main__":
         # for above joint genptyping using gvcfGenotype (Illumina).
         elif re.search('exeter',exp_type,re.IGNORECASE):
             tmp_merge_file = chr_dir+'/exeter.merged.bcf'
-            tmp_out_file,swh = objS.writeSlurmSplitByChrom(tmp_merge_file,
+            tmp_out_file,swh = objS.writeClusterSplitByChrom(tmp_merge_file,
                                                            tmp_data,tmp_log,
                                                            tmp_stat_file,swh,
                                                            chr_num
                                                           )
             # Excludes gfvcfGenotyper step. Only uses left normalization steps            
-            tmp_out_file, swh = objS.writeSlurmGvcfGT(config_dict,data_file,
+            tmp_out_file, swh = objS.writeClusterGvcfGT(config_dict,data_file,
                                                             tmp_data,tmp_log,
                                                       tmp_stat_file,exp_type,
                                                       swh,chr_num,reheader
                                                      )
 
         # Extract Exonic region
-        tmp_out_file, swh = objS.writeSlurmRegion(config_dict,tmp_data,tmp_out_file,
+        tmp_out_file, swh = objS.writeClusterRegion(config_dict,tmp_data,tmp_out_file,
                                                   tmp_stat_file,chr_num,exp_type,swh
                                                  )
 
         # Annotate the extracted region using VEP
-        tmp_out_file, swh = objS.writeSlurmVEP(config_dict,tmp_data,tmp_out_file,
+        tmp_out_file, swh = objS.writeClusterVEP(config_dict,tmp_data,tmp_out_file,
                                                            tmp_stat_file,chr_num,
                                                                  script_path,swh
                                               )
 
         # Add custom annotations
-        tmp_out_file, swh = objS.writeSlurmCustomAnnot(config_dict,tmp_data,
+        tmp_out_file, swh = objS.writeClusterCustomAnnot(config_dict,tmp_data,
                                                        tmp_out_file,chr_num,swh
                                                       )
 
         # Fix ploidy
         #tmp_out_file = tmp_data+'/tmpFile_'+str(chr_num)+'_AC0.exon.vep.anno.bcf'
-        tmp_out_file, swh = objS.writeSlurmPloidy(config_dict,tmp_out_file,
+        tmp_out_file, swh = objS.writeClusterPloidy(config_dict,tmp_out_file,
                                                   chr_num,gender_file,tmp_stat_file,
                                                                 exp_type,script_path,
                                                                     swh,flag_samples
                                                  )
         # Frequency filter
-        tmp_out_file, swh = objS.writeSlurmFreqFilter(config_dict,tmp_out_file,
+        tmp_out_file, swh = objS.writeClusterFreqFilter(config_dict,tmp_out_file,
                                                          chr_num,tmp_stat_file,
                                                                script_path,swh
                                                      )
         # Impact filter
         tmp_out_file, tmp_out_file_tab,\
-                swh = objS.writeSlurmImpactFilter(config_dict,tmp_out_file,
+                swh = objS.writeClusterImpactFilter(config_dict,tmp_out_file,
                                                      chr_num,tmp_stat_file,
                                                            script_path,swh
                                                  )
         # Variant Prioritization
-        tmp_out_file_tab, swh = objS.writeSlurmVariantPrioritization(config_dict,
+        tmp_out_file_tab, swh = objS.writeClusterVariantPrioritization(config_dict,
                                                                      tmp_out_file_tab,
                                                                      tmp_stat_file,
                                                                      script_path,swh
                                                                     )
         # End status
-        swh = objS.writeSlurmEndStatus(tmp_stat_file,swh)
+        swh = objS.writeClusterEndStatus(tmp_stat_file,swh)
         swh.close()
       
         ''' 
         if to_launch:
-            out = subprocess.check_output("sbatch "+slurm_file,shell=True)
+            out = subprocess.check_output("sbatch "+cluster_file,shell=True)
             job_strs = re.split("\W|\s",out)
             job_id = job_strs[3]
             jobDict[job_id] = chr_num
@@ -204,14 +204,14 @@ if __name__=="__main__":
     ########################################################################
     
     # combining all the chromosome output
-    out_merge_file,swh = objS.writeSlurmCombineFiles(config_dict,proj_date,
+    out_merge_file,swh = objS.writeClusterCombineFiles(config_dict,proj_date,
                                                      vers,tmp_dir,tmp_status,
                                                             "mergeAndFilter",
                                                             exp_type,email_id,
                                                                 script_path)
     
     # Family filtering
-    swh = objS.writeSlurmFamilyFilter(config_dict,work_dir,tmp_dir,manifest,
+    swh = objS.writeClusterFamilyFilter(config_dict,work_dir,tmp_dir,manifest,
                                           family_list,proj_date,script_path,
                                                         out_merge_file,swh)
     swh.close()
