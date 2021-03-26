@@ -1,3 +1,0 @@
-CFTR	hom,comphet
-CYP21A2	hom,comphet
-RBM8A	comphet

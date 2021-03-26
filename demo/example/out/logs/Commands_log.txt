@@ -1,0 +1,24 @@
+######### bgzip compress the vcf file: /rds/user/aak64/hpc-work/REPOS/snv/XTR/example/vcf/TwEx_EX1910699-TwEx_EX1910700-TwEx_EX1910701.vcf #########
+bgzip -c /rds/user/aak64/hpc-work/REPOS/snv/XTR/example/vcf/TwEx_EX1910699-TwEx_EX1910700-TwEx_EX1910701.vcf > /rds/user/aak64/hpc-work/REPOS/snv/XTR/example/out/bgzip_comp/TwEx_EX1910699-TwEx_EX1910700-TwEx_EX1910701.vcf.gz ; tabix -p vcf /rds/user/aak64/hpc-work/REPOS/snv/XTR/example/out/bgzip_comp/TwEx_EX1910699-TwEx_EX1910700-TwEx_EX1910701.vcf.gz
+######### Edit the header information #########
+bcftools view -h /rds/user/aak64/hpc-work/REPOS/snv/XTR/example/out/bgzip_comp/TwEx_EX1910699-TwEx_EX1910700-TwEx_EX1910701.vcf.gz | sed 's/##FORMAT=<ID=AD,Number=./##FORMAT=<ID=AD,Number=R/' > /rds/user/aak64/hpc-work/REPOS/snv/XTR/example/out/bgzip_norm/tmp.TwEx_EX1910699-TwEx_EX1910700-TwEx_EX1910701.vcf ; bcftools view -H /rds/user/aak64/hpc-work/REPOS/snv/XTR/example/out/bgzip_comp/TwEx_EX1910699-TwEx_EX1910700-TwEx_EX1910701.vcf.gz >> /rds/user/aak64/hpc-work/REPOS/snv/XTR/example/out/bgzip_norm/tmp.TwEx_EX1910699-TwEx_EX1910700-TwEx_EX1910701.vcf
+########## Nornalize the VCF for bi/multi-allelic sites #########
+bcftools norm -m - -f /rds/project/flr24/rds-flr24-wgs10k-ngc/WGS10K/data/NGC/us/misc/TEST_SNV/XTR/resources/genomes/grch37/Homo_sapiens.GRCh37.74.dna.fasta /rds/user/aak64/hpc-work/REPOS/snv/XTR/example/out/bgzip_norm/tmp.TwEx_EX1910699-TwEx_EX1910700-TwEx_EX1910701.vcf | bgzip -c > /rds/user/aak64/hpc-work/REPOS/snv/XTR/example/out/bgzip_norm/TwEx_EX1910699-TwEx_EX1910700-TwEx_EX1910701.vcf.gz ; bcftools index /rds/user/aak64/hpc-work/REPOS/snv/XTR/example/out/bgzip_norm/TwEx_EX1910699-TwEx_EX1910700-TwEx_EX1910701.vcf.gz ; rm /rds/user/aak64/hpc-work/REPOS/snv/XTR/example/out/bgzip_norm/tmp.TwEx_EX1910699-TwEx_EX1910700-TwEx_EX1910701.vcf
+
+
+######### bgzip compress the vcf file: /rds/user/aak64/hpc-work/REPOS/snv/XTR/example/vcf/WE0282-WE0283-WE0323.vcf #########
+bgzip -c /rds/user/aak64/hpc-work/REPOS/snv/XTR/example/vcf/WE0282-WE0283-WE0323.vcf > /rds/user/aak64/hpc-work/REPOS/snv/XTR/example/out/bgzip_comp/WE0282-WE0283-WE0323.vcf.gz ; tabix -p vcf /rds/user/aak64/hpc-work/REPOS/snv/XTR/example/out/bgzip_comp/WE0282-WE0283-WE0323.vcf.gz
+######### Edit the header information #########
+bcftools view -h /rds/user/aak64/hpc-work/REPOS/snv/XTR/example/out/bgzip_comp/WE0282-WE0283-WE0323.vcf.gz | sed 's/##FORMAT=<ID=AD,Number=./##FORMAT=<ID=AD,Number=R/' > /rds/user/aak64/hpc-work/REPOS/snv/XTR/example/out/bgzip_norm/tmp.WE0282-WE0283-WE0323.vcf ; bcftools view -H /rds/user/aak64/hpc-work/REPOS/snv/XTR/example/out/bgzip_comp/WE0282-WE0283-WE0323.vcf.gz >> /rds/user/aak64/hpc-work/REPOS/snv/XTR/example/out/bgzip_norm/tmp.WE0282-WE0283-WE0323.vcf
+########## Nornalize the VCF for bi/multi-allelic sites #########
+bcftools norm -m - -f /rds/project/flr24/rds-flr24-wgs10k-ngc/WGS10K/data/NGC/us/misc/TEST_SNV/XTR/resources/genomes/grch37/Homo_sapiens.GRCh37.74.dna.fasta /rds/user/aak64/hpc-work/REPOS/snv/XTR/example/out/bgzip_norm/tmp.WE0282-WE0283-WE0323.vcf | bgzip -c > /rds/user/aak64/hpc-work/REPOS/snv/XTR/example/out/bgzip_norm/WE0282-WE0283-WE0323.vcf.gz ; bcftools index /rds/user/aak64/hpc-work/REPOS/snv/XTR/example/out/bgzip_norm/WE0282-WE0283-WE0323.vcf.gz ; rm /rds/user/aak64/hpc-work/REPOS/snv/XTR/example/out/bgzip_norm/tmp.WE0282-WE0283-WE0323.vcf
+
+
+######### bgzip compress the vcf file: /rds/user/aak64/hpc-work/REPOS/snv/XTR/example/vcf/WE0361-WE0362-WE0363.vcf #########
+bgzip -c /rds/user/aak64/hpc-work/REPOS/snv/XTR/example/vcf/WE0361-WE0362-WE0363.vcf > /rds/user/aak64/hpc-work/REPOS/snv/XTR/example/out/bgzip_comp/WE0361-WE0362-WE0363.vcf.gz ; tabix -p vcf /rds/user/aak64/hpc-work/REPOS/snv/XTR/example/out/bgzip_comp/WE0361-WE0362-WE0363.vcf.gz
+######### Edit the header information #########
+bcftools view -h /rds/user/aak64/hpc-work/REPOS/snv/XTR/example/out/bgzip_comp/WE0361-WE0362-WE0363.vcf.gz | sed 's/##FORMAT=<ID=AD,Number=./##FORMAT=<ID=AD,Number=R/' > /rds/user/aak64/hpc-work/REPOS/snv/XTR/example/out/bgzip_norm/tmp.WE0361-WE0362-WE0363.vcf ; bcftools view -H /rds/user/aak64/hpc-work/REPOS/snv/XTR/example/out/bgzip_comp/WE0361-WE0362-WE0363.vcf.gz >> /rds/user/aak64/hpc-work/REPOS/snv/XTR/example/out/bgzip_norm/tmp.WE0361-WE0362-WE0363.vcf
+########## Nornalize the VCF for bi/multi-allelic sites #########
+bcftools norm -m - -f /rds/project/flr24/rds-flr24-wgs10k-ngc/WGS10K/data/NGC/us/misc/TEST_SNV/XTR/resources/genomes/grch37/Homo_sapiens.GRCh37.74.dna.fasta /rds/user/aak64/hpc-work/REPOS/snv/XTR/example/out/bgzip_norm/tmp.WE0361-WE0362-WE0363.vcf | bgzip -c > /rds/user/aak64/hpc-work/REPOS/snv/XTR/example/out/bgzip_norm/WE0361-WE0362-WE0363.vcf.gz ; bcftools index /rds/user/aak64/hpc-work/REPOS/snv/XTR/example/out/bgzip_norm/WE0361-WE0362-WE0363.vcf.gz ; rm /rds/user/aak64/hpc-work/REPOS/snv/XTR/example/out/bgzip_norm/tmp.WE0361-WE0362-WE0363.vcf
+
+

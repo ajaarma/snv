@@ -1,0 +1,10 @@
+family_id	ngc_id	father_id	mother_id	gender_declared	affected	ilmn_id	family_size	load_hpc_date	bam_path	vcf_path
+TwEx_EX1910699-TwEx_EX1910700-TwEx_EX1910701	TwEx_EX1910699	TwEx_EX1910701	TwEx_EX1910700	M	2	None	trio	2019-12-19	None	/rds/user/aak64/hpc-work/REPOS/snv/XTR/example/out/TwEx_EX1910699-TwEx_EX1910700-TwEx_EX1910701.vcf.gz
+TwEx_EX1910699-TwEx_EX1910700-TwEx_EX1910701	TwEx_EX1910700	None	None	F	1	None	trio	2019-12-19	None	None
+TwEx_EX1910699-TwEx_EX1910700-TwEx_EX1910701	TwEx_EX1910701	None	None	M	1	None	trio	2019-12-19	None	None
+WE0282-WE0283-WE0323	WE0323	WE0283	WE0282	M	2	None	trio	2019-12-19	None	/rds/user/aak64/hpc-work/REPOS/snv/XTR/example/out/WE0282-WE0283-WE0323.vcf.gz
+WE0282-WE0283-WE0323	WE0282	None	None	F	1	None	trio	2019-12-19	None	None
+WE0282-WE0283-WE0323	WE0283	None	None	M	1	None	trio	2019-12-19	None	None
+WE0361-WE0362-WE0363	WE0361	WE0363	WE0362	M	2	None	trio	2019-12-19	None	/rds/user/aak64/hpc-work/REPOS/snv/XTR/example/out/WE0361-WE0362-WE0363.vcf.gz
+WE0361-WE0362-WE0363	WE0362	None	None	F	1	None	trio	2019-12-19	None	None
+WE0361-WE0362-WE0363	WE0363	None	None	M	1	None	trio	2019-12-19	None	None

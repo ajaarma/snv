@@ -1,0 +1,9 @@
+UBE3A	Maternal
+CDKN1C	Maternal
+GNAS	Both
+IGF2	Paternal
+MAGEL2	Paternal
+SGCE	Paternal
+KCNK9	Maternal
+KCNQ1	Maternal
+MKRN3	Paternal
