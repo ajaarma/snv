@@ -125,6 +125,11 @@ if __name__=="__main__":
                                                          )
         '''
         if email_id and launch_flag: 
+            swh = objS.writeClusterTop(config_dict,proj_date,vers,swh)
+            script_out, script_err, swh = objS.writeClusterInit(config_dict,
+                                                          sb_log,chr_num,
+                                                          email_id,exp_type,swh
+                                                         )
             swh = objS.writeClusterSpecific(swh)
             swh = objS.writeClusterModule(config_dict,swh)
         
@@ -153,8 +158,8 @@ if __name__=="__main__":
 
         # Extract Exonic region
         tmp_out_file, swh = objS.writeClusterRegion(config_dict,tmp_data,tmp_out_file,
-                                                  tmp_stat_file,chr_num,exp_type,swh
-                                                 )
+                                                            tmp_stat_file,chr_num,swh
+                                                   )
 
         # Annotate the extracted region using VEP
         tmp_out_file, swh = objS.writeClusterVEP(config_dict,tmp_data,tmp_out_file,

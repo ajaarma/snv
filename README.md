@@ -1,6 +1,6 @@
 # SNV Pipeline
 
-SNV calling pipeline developed explicitly to process Exeter dataset comprising of 514 famlies/trios (n=1743 samples).
+SNV calling pipeline developed explicitly to process individual or trio vcf files obtained from Illumina based pipeline (grch37/grch38).
 The pipeline requires user defined datasets & annotation sources, available tools and input set of vcf files. It generates analysis scripts that can be incorporated into high performance cluster (HPC) computing to process the samples. This results in list of filtered variants per family that can be used for interpreation, reporting and further downstream analysis.
 
 # Installation 
@@ -214,9 +214,9 @@ The pipeline requires user defined datasets & annotation sources, available tool
 	Two scripts in the directory: <path-prefix>/demo/example/20210326/tmp_binaries/
 	Launch the scripts in these 2 stages sequentially after each of them gets finished.
 
-	   (1) **genotypeAndAnnotate_chr%.sh** where %=1..22,X,Y and MT
+	   (1) genotypeAndAnnotate_chr%.sh where %=1..22,X,Y and MT
 		scatter the annotation and frequency filtering per chromosome for all families.
-	   (2) **mergeAndFilter.sh**:
+	   (2) mergeAndFilter.sh:
 		Merge all the chromosome and apply inheritance filtering.
 
 

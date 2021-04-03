@@ -307,7 +307,7 @@ class CLUSTER:
 
     
     def writeClusterRegion(self,config_dict,tmp_data,tmp_out_file,tmp_stat_file,
-                                                          chr_num,exp_type,wh):
+                                                                    chr_num,wh):
 
         ''' Subroutine to extract the exonic regions '''
 

@@ -71,7 +71,7 @@
 		  <force_overwrite></force_overwrite>
 		  <species>homo_sapiens</species>
 		  <assembly>GRCh38</assembly>
-		  <port>3337</port>
+			  <!-- <port>3337</port> -->
 		  <!-- <fasta>%ref_seq%</fasta> -->
 		  <vcf_info_field>ANN</vcf_info_field>
 	  </defPar>
@@ -90,6 +90,7 @@
 		  <ccds></ccds>
 		  <uniprot></uniprot>
 		  <canonical></canonical>
+		  <mane></mane>
 		  <biotype></biotype>
 		  <check_existing></check_existing>
 		  <af></af>
