@@ -3,6 +3,8 @@
 SNV calling pipeline developed explicitly to process individual or trio vcf files obtained from Illumina based pipeline (grch37/grch38).
 The pipeline requires user defined datasets & annotation sources, available tools and input set of vcf files. It generates analysis scripts that can be incorporated into high performance cluster (HPC) computing to process the samples. This results in list of filtered variants per family that can be used for interpreation, reporting and further downstream analysis.
 
+For demonstration purpose below example is presented for GRCh37. However, the same can be replicated for GRCh38. 
+
 # Installation 
 
 	git clone https://github.com/ajaarma/snv.git
@@ -178,12 +180,12 @@ The pipeline requires user defined datasets & annotation sources, available tool
 	1. Put the respective vcf files in the directory. For example: demo/example/vcf/ 
 	2. Create manifest file in same format as shown in demo/example/example_manifest.txt
 	3. Assign gender to each family members (illumina or sample id). For example: demo/example/example_genders.txt
-	4. List of all the family ids that needed to be analyzed. See example sample_pedigree.txt file.
-	         For e.g: demo/example/example_family_analysis.txt
+	4. List of all the family ids that needed to be analyzed.
+	         For e.g: demo/example/manifest/example_family_analysis.txt
 
 ### Step -3: ###
 
-   Generate all the shell scripts that can be incorporated into user specific HPC cluster network.
+   Generate all the shell scripts that can be incorporated into user specific HPC cluster network. For e.g: Slurm/PBS/LSF network.
 
 ##### Command: #####
 	$ python processSNV.py 	-a <USER-XML-FILE>
@@ -229,4 +231,3 @@ The pipeline requires user defined datasets & annotation sources, available tool
 ##### For any questions/issues/bugs please mail us at: #####
 	Ajay: aak@ebi.ac.uk
 	Courtney: cf458@cam.ac.uk
-	Alba: as2635@cam.ac.uk
