@@ -16,12 +16,12 @@ vers="1.0"
 import re,sys,getopt,os,datetime,subprocess
 from collections import OrderedDict
 
-script_path = os.path.dirname(os.path.dirname(os.path.abspath( __file__ )))
+script_path = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+sys.path.append(script_path+'/config/')
+sys.path.append(script_path+'/cluster/')
 
-sys.path.append(script_path+"/config/")
-sys.path.append(script_path+"/cluster/")
-from CONFIG import *
-from CLUSTER import *
+from config import *
+from cluster import *
 
 ##################
 ####   MAIN   ####

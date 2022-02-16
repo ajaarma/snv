@@ -15,10 +15,10 @@
 
 import re,sys,os
 
-script_path = os.path.dirname(os.path.abspath(__file__))
-sys.path.append(script_path+'/CONFIG/')
+script_path = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+sys.path.append(script_path+'/config/')
 
-from CONFIG import *
+from config import *
 import dicttoxml
 from xml.dom.minidom import parseString
 

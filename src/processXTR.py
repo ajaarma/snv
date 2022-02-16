@@ -10,11 +10,10 @@
 
 import re,sys,os
 
-script_path = os.path.dirname(os.path.abspath(__file__))
+script_path = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+sys.path.append(script_path+'/config/')
 
-sys.path.append(script_path+'/CONFIG/')
-
-from CONFIG import *
+from config import *
 
 
 if __name__=='__main__':
