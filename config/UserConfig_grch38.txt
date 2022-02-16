@@ -7,7 +7,6 @@ gnomad_v3=gnomad/grch38/r3.0/byChr/gnomad.genomes.r3.0.sites.chr%s.vcf.bgz
 dir_cache=softwares/vep/
 exac_pli=gnomad/grch38/gnomad.v2.1.1.lof_metrics.by_transcript_forVEP.txt
 exac=exac/grch38/ExAC.0.3.GRCh38.vcf.gz
-exac_t=exac/grch38/ExAC.r0.3.1.sites.vep.decompose.norm.prefixed_PASS-only.vcf.gz
 cadd_snv=cadd/grch38/v1.6/whole_genome_SNVs.tsv.gz
 cadd_indel=cadd/grch38/v1.6/gnomad.genomes.r3.0.indel.tsv.gz
 revel=revel/grch38/new_tabbed_revel.sorted.tsv.gz
